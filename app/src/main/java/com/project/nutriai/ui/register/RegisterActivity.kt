@@ -1,25 +1,21 @@
 package com.project.nutriai.ui.register
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import com.project.nutriai.R
+import android.view.LayoutInflater
+import androidx.activity.viewModels
 import com.project.nutriai.databinding.ActivityRegisterBinding
+import com.project.nutriai.ui.base.BaseActivity
+import dagger.hilt.android.AndroidEntryPoint
 
-class RegisterActivity : AppCompatActivity() {
+@AndroidEntryPoint
+class RegisterActivity : BaseActivity<ActivityRegisterBinding, RegisterViewModel>() {
 
-    private lateinit var binding: ActivityRegisterBinding
+    override val viewModel: RegisterViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun setupViewBinding(inflater: LayoutInflater) =
+        ActivityRegisterBinding.inflate(inflater)
 
-        binding = ActivityRegisterBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
+    override fun init(savedInstanceState: Bundle?) {
         initListener()
     }
 

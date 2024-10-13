@@ -21,4 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "NutriAI"
 include(":app")
- 
+include(":data")
+include(":domain")
