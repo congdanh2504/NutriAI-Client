@@ -4,13 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.project.nutriai.R
 import com.project.nutriai.databinding.ActivityLoginBinding
 import com.project.nutriai.extensions.startActivity
 import com.project.nutriai.ui.base.BaseActivity
+import com.project.nutriai.ui.questions.QuestionsActivity
 import com.project.nutriai.ui.register.RegisterActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -40,6 +40,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
     }
 
     private fun initListener() {
+        binding.btnLogin.setOnClickListener {
+            startActivity<QuestionsActivity>(true)
+        }
         binding.tvSignUp.setOnClickListener {
             startActivity<RegisterActivity>()
         }

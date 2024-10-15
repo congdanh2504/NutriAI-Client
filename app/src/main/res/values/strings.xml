@@ -6,9 +6,6 @@
     <string name="login">Login</string>
     <string name="don_t_have_an_account">Don\'t have an account?</string>
     <string name="sign_up">Sign Up</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
@@ -53,4 +50,10 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="register_a_new_account">Register,\nA new account</string>
     <string name="username">Username</string>
+    <string name="your_full_name">Your full name</string>
+    <string name="your_age">Your age</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="your_weight">Your weight</string>
+    <string name="your_height">Your height</string>
 </resources>

@@ -6,8 +6,11 @@
     <color name="primaryLightColor">#48D0FE</color>
     <color name="textColor">#2B2B2B</color>
     <color name="textColorSecondary">#C4C4C4</color>
+    <color name="gray">#C4C4C4</color>
     <color name="lightBlue">#DDF2FF</color>
     <color name="lightPurple">#F1F3FA</color>
     <color name="lightOrange">#FBE3D4</color>
     <color name="lightGray">#F5F5F5</color>
+    <color name="cardNoCheck">#D7E2F3</color>
+    <color name="cardCheck">@color/primaryColor</color>
 </resources>
