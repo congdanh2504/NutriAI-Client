@@ -31,7 +31,7 @@ class QuestionsActivity : BaseActivity<ActivityQuestionsBinding, QuestionsViewMo
     private fun initView() {
         binding.vpPages.adapter = questionPageAdapter
         binding.vpPages.isUserInputEnabled = false
-        binding.vpPages.offscreenPageLimit = 3
+        binding.vpPages.offscreenPageLimit = questionPageAdapter.itemCount
     }
 
     private fun initListener() {

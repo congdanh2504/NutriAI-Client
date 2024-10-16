@@ -56,4 +56,14 @@
     <string name="female">Female</string>
     <string name="your_weight">Your weight</string>
     <string name="your_height">Your height</string>
+    <string name="weight_gain">Weight gain</string>
+    <string name="losing_weight">Losing weight</string>
+    <string name="maintain_current_weight">Maintain current weight</string>
+    <string name="improve_overall_health">Improve overall health</string>
+    <string name="muscle_gain">Muscle gain</string>
+    <string name="vegetarian">Vegetarian</string>
+    <string name="be_vegetarian">Be vegetarian</string>
+    <string name="keto">Keto</string>
+    <string name="paleo">Paleo</string>
+    <string name="there_is_no_specific_diet">There is no specific diet</string>
 </resources>
