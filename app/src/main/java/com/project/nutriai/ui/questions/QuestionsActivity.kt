@@ -1,5 +1,6 @@
 package com.project.nutriai.ui.questions
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -52,7 +53,10 @@ class QuestionsActivity : BaseActivity<ActivityQuestionsBinding, QuestionsViewMo
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun selectPage(position: Int) {
+        binding.tvQuestion.text = getString(viewModel.questions[position])
+        binding.tvNumber.text = "${position + 1}/${questionPageAdapter.itemCount}"
         binding.vpPages.setCurrentItem(position, true)
     }
 
