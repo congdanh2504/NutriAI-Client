@@ -14,6 +14,7 @@ class QuestionsViewModel @Inject constructor() : BaseViewModel() {
         R.string.question_weight_height,
         R.string.question_health_goal,
         R.string.question_diet_plan,
+        R.string.question_allergies,
         R.string.question_physical_activity,
         R.string.question_health_issues
     )

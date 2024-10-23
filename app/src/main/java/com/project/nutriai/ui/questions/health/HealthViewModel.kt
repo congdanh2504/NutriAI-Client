@@ -23,7 +23,6 @@ class HealthViewModel @Inject constructor() : BaseViewModel() {
             Answer(8, R.string.osteoporosis),
             Answer(9, R.string.arthritis),
             Answer(10, R.string.anemia),
-            Answer(11, R.string.lactose_intolerance),
         )
     )
     val healths = _healths.asStateFlow()

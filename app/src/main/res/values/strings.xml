@@ -80,12 +80,19 @@
     <string name="osteoporosis">Osteoporosis</string>
     <string name="arthritis">Arthritis</string>
     <string name="anemia">Anemia</string>
+    <string name="gluten_allergy">Gluten allergy</string>
     <string name="lactose_intolerance">Lactose intolerance</string>
+    <string name="seafood_allergy">Seafood allergy</string>
+    <string name="peanut_allergy">Peanut allergy</string>
+    <string name="nut_allergy">Nut allergy</string>
+    <string name="egg_allergy">Egg allergy</string>
+    <string name="soy_allergy">Soy allergy</string>
     <string name="question_full_name_age">Full name, age</string>
     <string name="question_gender">Gender</string>
     <string name="question_weight_height">Weight, height</string>
     <string name="question_health_goal">What health goal do you want to achieve?</string>
     <string name="question_diet_plan">Do you follow any of the diet plans below?</string>
+    <string name="question_allergies">Do you have any food allergies?</string>
     <string name="question_physical_activity">What kind of physical activity do you usually engage in?</string>
     <string name="question_health_issues">Do you have any health issues that need attention when planning your meals?</string>
 </resources>

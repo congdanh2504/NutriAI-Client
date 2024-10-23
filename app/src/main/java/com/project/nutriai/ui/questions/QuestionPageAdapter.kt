@@ -3,6 +3,7 @@ package com.project.nutriai.ui.questions
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.project.nutriai.ui.questions.allergies.AllergyFragment
 import com.project.nutriai.ui.questions.diet.DietFragment
 import com.project.nutriai.ui.questions.gender.GenderFragment
 import com.project.nutriai.ui.questions.health.HealthFragment
@@ -20,6 +21,7 @@ class QuestionPageAdapter(fragmentActivity: FragmentActivity) :
         WEIGHT_HEIGHT_INDEX to { WeightHeightFragment() },
         NUTRI_OBJECT_INDEX to { NutriObjectFragment() },
         DIET_INDEX to { DietFragment() },
+        ALLERGY_INDEX to { AllergyFragment() },
         LIFESTYLE_INDEX to { LifestyleFragment() },
         HEALTH_INDEX to { HealthFragment() }
     )
@@ -36,7 +38,8 @@ class QuestionPageAdapter(fragmentActivity: FragmentActivity) :
         const val WEIGHT_HEIGHT_INDEX = 2
         const val NUTRI_OBJECT_INDEX = 3
         const val DIET_INDEX = 4
-        const val LIFESTYLE_INDEX = 5
-        const val HEALTH_INDEX = 6
+        const val ALLERGY_INDEX = 5
+        const val LIFESTYLE_INDEX = 6
+        const val HEALTH_INDEX = 7
     }
 }
