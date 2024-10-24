@@ -11,9 +11,12 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.project.nutriai.R
 import com.project.nutriai.databinding.ActivitySplashBinding
+import com.project.nutriai.extensions.flow.collectIn
 import com.project.nutriai.ui.base.BaseActivity
 import com.project.nutriai.ui.login.LoginActivity
+import com.project.nutriai.ui.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.filterNotNull
 
 @SuppressLint("CustomSplashScreen")
 @AndroidEntryPoint
@@ -32,8 +35,15 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        viewModel.getCurrentUser()
 
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
+        viewModel.isLogin.filterNotNull().collectIn(this) { isLogin ->
+            if (isLogin) {
+                startActivity(Intent(this, MainActivity::class.java))
+            } else {
+                startActivity(Intent(this, LoginActivity::class.java))
+            }
+            finish()
+        }
     }
 }
