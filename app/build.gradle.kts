@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("kotlin-kapt")
+    id(libs.plugins.kotlin.parcelize.get().pluginId)
     alias(libs.plugins.hilt)
 }
 
@@ -58,4 +59,5 @@ dependencies {
     implementation(libs.kotpref.core)
     implementation(libs.kotpref.gsonSupport)
     implementation(libs.fancytoast)
+    implementation(libs.gson)
 }

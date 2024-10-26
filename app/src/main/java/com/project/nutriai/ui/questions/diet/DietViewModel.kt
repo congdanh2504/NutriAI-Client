@@ -1,8 +1,10 @@
 package com.project.nutriai.ui.questions.diet
 
+import com.project.domain.model.DietPreference
 import com.project.nutriai.R
 import com.project.nutriai.ui.base.BaseViewModel
 import com.project.nutriai.ui.questions.nutri_object.Answer
+import com.project.nutriai.utils.AppPref
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -25,6 +27,14 @@ class DietViewModel @Inject constructor() : BaseViewModel() {
         _diet.value = _diet.value.map {
             it.copy(isSelected = it.id == diet.id)
         }
+        val diet = when (diet.id) {
+            1 -> DietPreference.VEGETARIAN
+            2 -> DietPreference.VEGAN
+            3 -> DietPreference.KETO
+            4 -> DietPreference.PALEO
+            else -> DietPreference.NONE
+        }
+        AppPref.userDetail = AppPref.userDetail.copy(dietPreference = diet)
     }
 
 }

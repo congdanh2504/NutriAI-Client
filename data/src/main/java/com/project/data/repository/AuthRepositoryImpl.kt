@@ -2,9 +2,10 @@ package com.project.data.repository
 
 import com.project.data.source.remote.AppApi
 import com.project.data.source.remote.dto.LoginRequest
+import com.project.data.source.remote.dto.LoginResponse
 import com.project.data.source.remote.dto.RegisterRequest
-import com.project.data.source.remote.dto.TokenResponse
-import com.project.data.source.remote.dto.UserDetailResponse
+import com.project.data.source.remote.dto.UserDetailNetwork
+import com.project.data.source.remote.dto.UserResponse
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
@@ -19,11 +20,19 @@ class AuthRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun login(email: String, password: String): TokenResponse {
+    override suspend fun login(email: String, password: String): LoginResponse {
         return appApi.login(LoginRequest(email, password))
     }
 
-    override suspend fun getCurrentUser(): UserDetailResponse {
+    override suspend fun getCurrentUser(): UserResponse {
         return appApi.getCurrentUser()
+    }
+
+    override suspend fun updateUserDetail(userDetailNetwork: UserDetailNetwork) {
+        return appApi.updateUserDetail(userDetailNetwork)
+    }
+
+    override suspend fun getUserDetail(): UserDetailNetwork {
+        return appApi.getUserDetail()
     }
 }

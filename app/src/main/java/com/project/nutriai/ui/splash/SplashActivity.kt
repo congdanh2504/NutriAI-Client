@@ -9,12 +9,14 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.chibatching.kotpref.gsonpref.GsonPref
 import com.project.nutriai.R
 import com.project.nutriai.databinding.ActivitySplashBinding
 import com.project.nutriai.extensions.flow.collectIn
 import com.project.nutriai.ui.base.BaseActivity
 import com.project.nutriai.ui.login.LoginActivity
 import com.project.nutriai.ui.main.MainActivity
+import com.project.nutriai.ui.questions.QuestionsActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.filterNotNull
 
@@ -38,10 +40,17 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>() {
         viewModel.getCurrentUser()
 
         viewModel.isLogin.filterNotNull().collectIn(this) { isLogin ->
-            if (isLogin) {
+            if (!isLogin) {
+                startActivity(Intent(this, LoginActivity::class.java))
+            }
+            finish()
+        }
+
+        viewModel.hasAnsweredSurvey.filterNotNull().collectIn(this) { hasAnsweredSurvey ->
+            if (hasAnsweredSurvey) {
                 startActivity(Intent(this, MainActivity::class.java))
             } else {
-                startActivity(Intent(this, LoginActivity::class.java))
+                startActivity(Intent(this, QuestionsActivity::class.java))
             }
             finish()
         }

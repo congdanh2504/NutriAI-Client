@@ -4,6 +4,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.project.nutriai.R
 import com.project.nutriai.ui.base.BaseViewModel
+import com.project.nutriai.utils.AppPref
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -23,6 +24,11 @@ class GenderViewModel @Inject constructor() : BaseViewModel() {
         _genderList.value = _genderList.value.map {
             it.copy(selected = it.type == type)
         }
+        val gender = if (type == R.string.male)
+            com.project.domain.model.Gender.MALE
+        else
+            com.project.domain.model.Gender.FEMALE
+        AppPref.userDetail = AppPref.userDetail.copy(gender = gender)
     }
 }
 

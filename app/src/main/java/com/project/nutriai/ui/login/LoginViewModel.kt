@@ -19,19 +19,23 @@ class LoginViewModel @Inject constructor(
     private val _loginStatus = MutableStateFlow(LoginViewState.EMPTY)
     val loginStatus = _loginStatus.asStateFlow()
 
+
+
     fun login(email: String, password: String) = viewModelScope.launch {
         _loginStatus.value = LoginViewState(isLoading = true)
+        var hasAnsweredSurvey = false
         val isSuccess = try {
             Log.d("LoginViewModel", "login: $email $password")
-            val token = loginUseCase(email, password)
-            TokenPref.accessToken = token.accessToken
-            TokenPref.refreshToken = token.refreshToken
+            val loginResponse = loginUseCase(email, password)
+            TokenPref.accessToken = loginResponse.accessToken
+            TokenPref.refreshToken = loginResponse.refreshToken
+            hasAnsweredSurvey = loginResponse.hasAnsweredSurvey
             true
         } catch (e: Exception) {
             false
         }
         if (isSuccess) {
-            _loginStatus.value = LoginViewState(isSuccess = true)
+            _loginStatus.value = LoginViewState(isSuccess = true, hasAnsweredSurvey = hasAnsweredSurvey)
         } else {
             _loginStatus.value = LoginViewState(error = "Failed to login")
         }
@@ -41,6 +45,7 @@ class LoginViewModel @Inject constructor(
 data class LoginViewState(
     val isLoading: Boolean = false,
     val isSuccess: Boolean = false,
+    val hasAnsweredSurvey: Boolean = false,
     val error: String = ""
 ) {
     companion object {

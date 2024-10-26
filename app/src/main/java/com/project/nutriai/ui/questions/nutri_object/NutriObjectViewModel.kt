@@ -1,8 +1,10 @@
 package com.project.nutriai.ui.questions.nutri_object
 
 import androidx.annotation.StringRes
+import com.project.domain.model.NutritionGoal
 import com.project.nutriai.R
 import com.project.nutriai.ui.base.BaseViewModel
+import com.project.nutriai.utils.AppPref
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -25,6 +27,14 @@ class NutriObjectViewModel @Inject constructor() : BaseViewModel() {
         _answers.value = _answers.value.map {
             it.copy(isSelected = it.id == answer.id)
         }
+        val goal = when (answer.id) {
+            1 -> NutritionGoal.GAIN_WEIGHT
+            2 -> NutritionGoal.LOSE_WEIGHT
+            3 -> NutritionGoal.MAINTAIN_WEIGHT
+            4 -> NutritionGoal.IMPROVE_HEALTH
+            else -> NutritionGoal.BUILD_MUSCLE
+        }
+        AppPref.userDetail = AppPref.userDetail.copy(nutritionGoal = goal)
     }
 }
 

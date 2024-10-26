@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("kotlin-kapt")
+    id(libs.plugins.kotlin.parcelize.get().pluginId)
     alias(libs.plugins.hilt)
 }
 

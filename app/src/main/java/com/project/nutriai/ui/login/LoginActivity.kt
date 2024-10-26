@@ -12,6 +12,7 @@ import com.project.nutriai.databinding.ActivityLoginBinding
 import com.project.nutriai.extensions.flow.collectIn
 import com.project.nutriai.extensions.startActivity
 import com.project.nutriai.ui.base.BaseActivity
+import com.project.nutriai.ui.main.MainActivity
 import com.project.nutriai.ui.questions.QuestionsActivity
 import com.project.nutriai.ui.register.RegisterActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -69,9 +70,16 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
                     dismissLoadingDialog()
                     if (state.isSuccess) {
                         showSuccessMessage("Login success")
-                        lifecycleScope.launch {
-                            delay(1000)
-                            startActivity<QuestionsActivity>(true)
+                        if (state.hasAnsweredSurvey) {
+                            lifecycleScope.launch {
+                                delay(1000)
+                                startActivity<MainActivity>(true)
+                            }
+                        } else {
+                            lifecycleScope.launch {
+                                delay(1000)
+                                startActivity<QuestionsActivity>(true)
+                            }
                         }
                     } else if (state.error.isNotEmpty()) {
                         showErrorMessage(state.error)

@@ -1,14 +1,19 @@
 package com.project.nutriai.ui.questions
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import androidx.activity.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.project.nutriai.databinding.ActivityQuestionsBinding
+import com.project.nutriai.extensions.flow.collectIn
 import com.project.nutriai.ui.base.BaseActivity
+import com.project.nutriai.ui.main.MainActivity
+import com.project.nutriai.utils.AppPref
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.filterNotNull
 
 @AndroidEntryPoint
 class QuestionsActivity : BaseActivity<ActivityQuestionsBinding, QuestionsViewModel>() {
@@ -27,6 +32,7 @@ class QuestionsActivity : BaseActivity<ActivityQuestionsBinding, QuestionsViewMo
     override fun init(savedInstanceState: Bundle?) {
         initView()
         initListener()
+        bindViewModel()
     }
 
     private fun initView() {
@@ -49,6 +55,8 @@ class QuestionsActivity : BaseActivity<ActivityQuestionsBinding, QuestionsViewMo
         binding.cvNext.setOnClickListener {
             if (rvPos < questionPageAdapter.itemCount - 1) {
                 rvPos++
+            } else {
+                viewModel.updateUserDetail()
             }
         }
     }
@@ -60,4 +68,14 @@ class QuestionsActivity : BaseActivity<ActivityQuestionsBinding, QuestionsViewMo
         binding.vpPages.setCurrentItem(position, true)
     }
 
+    private fun bindViewModel() {
+        viewModel.updateStatus.filterNotNull().collectIn(this) {
+            if (it) {
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+            } else {
+                showErrorMessage("Failed to update user detail")
+            }
+        }
+    }
 }

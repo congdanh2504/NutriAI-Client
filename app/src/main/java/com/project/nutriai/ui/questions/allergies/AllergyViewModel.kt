@@ -1,8 +1,10 @@
 package com.project.nutriai.ui.questions.allergies
 
+import com.project.domain.model.FoodAllergies
 import com.project.nutriai.R
 import com.project.nutriai.ui.base.BaseViewModel
 import com.project.nutriai.ui.questions.nutri_object.Answer
+import com.project.nutriai.utils.AppPref
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -32,6 +34,18 @@ class AllergyViewModel @Inject constructor() : BaseViewModel() {
                 it
             }
         }
+        val allergies = _allergies.value.filter { it.isSelected }.map {
+            when (it.id) {
+                1 -> FoodAllergies.GLUTEN
+                2 -> FoodAllergies.LACTOSE
+                3 -> FoodAllergies.SEAFOOD
+                4 -> FoodAllergies.PEANUTS
+                5 -> FoodAllergies.NUTS
+                6 -> FoodAllergies.EGGS
+                else -> FoodAllergies.SOY
+            }
+        }
+        AppPref.userDetail = AppPref.userDetail.copy(foodAllergies = allergies)
     }
 
 }

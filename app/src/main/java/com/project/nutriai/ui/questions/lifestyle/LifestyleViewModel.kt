@@ -1,8 +1,10 @@
 package com.project.nutriai.ui.questions.lifestyle
 
+import com.project.domain.model.PhysicalActivity
 import com.project.nutriai.R
 import com.project.nutriai.ui.base.BaseViewModel
 import com.project.nutriai.ui.questions.nutri_object.Answer
+import com.project.nutriai.utils.AppPref
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -24,5 +26,12 @@ class LifestyleViewModel @Inject constructor() : BaseViewModel() {
         _lifestyles.value = _lifestyles.value.map {
             it.copy(isSelected = it.id == lifestyle.id)
         }
+        val lifestyle = when (lifestyle.id) {
+            1 -> PhysicalActivity.NO_EXERCISE
+            2 -> PhysicalActivity.LIGHT
+            3 -> PhysicalActivity.MODERATE
+            else -> PhysicalActivity.HEAVY
+        }
+        AppPref.userDetail = AppPref.userDetail.copy(physicalActivity = lifestyle)
     }
 }
