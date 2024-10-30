@@ -95,4 +95,20 @@
     <string name="question_allergies">Do you have any food allergies?</string>
     <string name="question_physical_activity">What kind of physical activity do you usually engage in?</string>
     <string name="question_health_issues">Do you have any health issues that need attention when planning your meals?</string>
+    <string name="gender">Gender</string>
+    <string name="height">Height</string>
+    <string name="weight">Weight</string>
+    <string name="age">Age</string>
+    <string name="nutrition_goal">Nutrition Goal</string>
+    <string name="diet_preference">Diet preference</string>
+    <string name="food_allergies">Food allergies</string>
+    <string name="physical_activity">Physical activity</string>
+    <string name="health_conditions">Health conditions</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
+    <string name="detail_profile">Detail Profile</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="about_us">About Us</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="terms_of_service">Terms of Service</string>
 </resources>

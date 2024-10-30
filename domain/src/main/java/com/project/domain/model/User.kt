@@ -1,16 +1,13 @@
 package com.project.domain.model
 
-import android.os.Parcelable
 import com.project.data.source.remote.dto.UserDetailNetwork
 import com.project.data.source.remote.dto.UserResponse
-import kotlinx.parcelize.Parcelize
 
-@Parcelize
 data class User(
     val email: String,
     val username: String,
     val hasAnsweredSurvey: Boolean
-) : Parcelable
+)
 
 fun UserResponse.toUserDetail() = User(email, username, hasAnsweredSurvey)
 
@@ -25,7 +22,22 @@ data class UserDetail(
     val foodAllergies: List<FoodAllergies>,
     val physicalActivity: PhysicalActivity,
     val healthConditions: List<HealthConditions>
-)
+) {
+    companion object {
+        val EMPTY = UserDetail(
+            fullName = "",
+            age = 0,
+            gender = Gender.MALE,
+            weight = 0,
+            height = 0,
+            nutritionGoal = NutritionGoal.GAIN_WEIGHT,
+            dietPreference = DietPreference.NONE,
+            foodAllergies = emptyList(),
+            physicalActivity = PhysicalActivity.HEAVY,
+            healthConditions = emptyList()
+        )
+    }
+}
 
 fun UserDetail.toUserDetailNetwork() = UserDetailNetwork(
     fullName,
