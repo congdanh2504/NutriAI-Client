@@ -99,11 +99,11 @@
     <string name="height">Height</string>
     <string name="weight">Weight</string>
     <string name="age">Age</string>
-    <string name="nutrition_goal">Nutrition Goal</string>
+    <string name="nutrition_goal">Nutrition goal</string>
     <string name="diet_preference">Diet preference</string>
     <string name="food_allergies">Food allergies</string>
     <string name="physical_activity">Physical activity</string>
-    <string name="health_conditions">Health conditions</string>
+    <string name="health_conditions">Health Conditions</string>
     <string name="profile">Profile</string>
     <string name="logout">Logout</string>
     <string name="detail_profile">Detail Profile</string>
@@ -111,4 +111,7 @@
     <string name="about_us">About Us</string>
     <string name="contact_us">Contact Us</string>
     <string name="terms_of_service">Terms of Service</string>
+    <string name="personal_information">Personal Information</string>
+    <string name="overal_health">Overal Health</string>
+    <string name="health_overview">Health Overview</string>
 </resources>
