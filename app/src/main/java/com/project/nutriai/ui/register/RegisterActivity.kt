@@ -2,8 +2,13 @@ package com.project.nutriai.ui.register
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
+import com.project.nutriai.R
 import com.project.nutriai.databinding.ActivityRegisterBinding
 import com.project.nutriai.extensions.flow.collectIn
 import com.project.nutriai.ui.base.BaseActivity
@@ -20,8 +25,21 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding, RegisterViewModel
         ActivityRegisterBinding.inflate(inflater)
 
     override fun init(savedInstanceState: Bundle?) {
+        initView()
         initListener()
         bindViewModel()
+    }
+
+    private fun initView() {
+        enableEdgeToEdge()
+        setContentView(binding.root)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, 0, systemBars.right, systemBars.bottom)
+            insets
+        }
+
+        WindowCompat.getInsetsController(window, binding.root).isAppearanceLightStatusBars = false
     }
 
     private fun initListener() {

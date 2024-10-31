@@ -2,8 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="primaryColor">#1BB0E3</color>
-    <color name="primaryLightColor">#48D0FE</color>
+    <color name="primaryColor">#4CAF50</color>
+    <color name="primaryLightColor">#19CA22</color>
     <color name="textColor">#2B2B2B</color>
     <color name="textColorSecondary">#C4C4C4</color>
     <color name="gray">#C4C4C4</color>
