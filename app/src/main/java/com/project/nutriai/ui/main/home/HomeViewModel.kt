@@ -4,9 +4,8 @@ import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.project.domain.model.Category
 import com.project.domain.model.Meal
-import com.project.domain.use_case.GetAvoidedMealsUseCase
-import com.project.domain.use_case.GetRecommendedMealsUseCase
-import com.project.nutriai.R
+import com.project.domain.use_case.meal.GetAvoidedMealsUseCase
+import com.project.domain.use_case.meal.GetRecommendedMealsUseCase
 import com.project.nutriai.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

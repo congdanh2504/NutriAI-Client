@@ -2,8 +2,8 @@ package com.project.nutriai.ui.splash
 
 import android.util.Log
 import androidx.lifecycle.viewModelScope
-import com.project.domain.use_case.GetCurrentUserUseCase
-import com.project.domain.use_case.GetUserDetail
+import com.project.domain.use_case.auth.GetCurrentUserUseCase
+import com.project.domain.use_case.auth.GetUserDetail
 import com.project.nutriai.ui.base.BaseViewModel
 import com.project.nutriai.utils.AppPref
 import dagger.hilt.android.lifecycle.HiltViewModel

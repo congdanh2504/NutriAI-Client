@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import coil.request.CachePolicy
 import com.project.domain.model.Meal
+import com.project.nutriai.R
 import com.project.nutriai.databinding.ItemMealVerticalBinding
 import com.project.nutriai.extensions.toReadableString
 
@@ -39,7 +41,12 @@ class MealVerticalAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Meal) {
-            binding.ivMeal.load(item.imageUrl)
+            binding.ivMeal.load(item.imageUrl) {
+                placeholder(R.drawable.meal_placeholder)
+                error(R.drawable.meal_placeholder)
+                diskCachePolicy(CachePolicy.ENABLED)
+                memoryCachePolicy(CachePolicy.ENABLED)
+            }
             binding.tvMealName.text = item.name
             binding.tvMealCategory.text = item.category.toReadableString(binding.root.context)
             binding.root.setOnClickListener {

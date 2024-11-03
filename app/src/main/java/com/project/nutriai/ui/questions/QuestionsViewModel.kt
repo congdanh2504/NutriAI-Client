@@ -1,7 +1,7 @@
 package com.project.nutriai.ui.questions
 
 import androidx.lifecycle.viewModelScope
-import com.project.domain.use_case.UpdateUserDetail
+import com.project.domain.use_case.auth.UpdateUserDetail
 import com.project.nutriai.R
 import com.project.nutriai.ui.base.BaseViewModel
 import com.project.nutriai.utils.AppPref

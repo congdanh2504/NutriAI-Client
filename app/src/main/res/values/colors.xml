@@ -7,6 +7,7 @@
     <color name="textColor">#2B2B2B</color>
     <color name="textColorSecondary">#C4C4C4</color>
     <color name="gray">#C4C4C4</color>
+    <color name="neutral">#E8E8E8</color>
     <color name="darkGray">#737373</color>
     <color name="lightPurple">#F1F3FA</color>
     <color name="lightGray">#F5F5F5</color>
@@ -20,4 +21,9 @@
     <color name="darkOrange">#F57C00</color>
     <color name="cardNoCheck">#DFFFE8</color>
     <color name="cardCheck">@color/primaryColor</color>
+    <color name="protein">#4CAF50</color>
+    <color name="carbohydrates">#FFA726</color>
+    <color name="fats">#FFEB3B</color>
+    <color name="fiber">#42A5F5</color>
+    <color name="sugar">#F48FB1</color>
 </resources>

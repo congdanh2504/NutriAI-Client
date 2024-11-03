@@ -62,4 +62,6 @@ dependencies {
     implementation(libs.gson)
     implementation(libs.coil.kt)
     implementation(libs.shimmer)
+    implementation(libs.mpandroidchart)
+    implementation(libs.markwon.core)
 }

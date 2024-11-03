@@ -1,5 +1,6 @@
 package com.project.nutriai.ui.search
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,6 +16,7 @@ import com.project.nutriai.databinding.ActivitySearchBinding
 import com.project.nutriai.extensions.flow.collectIn
 import com.project.nutriai.extensions.hideKeyboard
 import com.project.nutriai.ui.base.BaseActivity
+import com.project.nutriai.ui.meal_detail.MealDetailsActivity
 import com.project.nutriai.ui.search.adapter.MealVerticalAdapter
 import com.project.nutriai.utils.AppUtils
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,7 +28,8 @@ class SearchActivity : BaseActivity<ActivitySearchBinding, SearchViewModel>() {
     private var query: String? = null
     private val mealAdapter by lazy {
         MealVerticalAdapter {
-            //startActivity<MealDetailActivity>()
+            val intent = MealDetailsActivity.getIntent(this, it.id)
+            startActivity(intent)
         }
     }
 
@@ -104,7 +107,14 @@ class SearchActivity : BaseActivity<ActivitySearchBinding, SearchViewModel>() {
     }
 
     companion object {
-        const val CATEGORY_KEY = "category"
-        const val QUERY_KEY = "query"
+        private const val CATEGORY_KEY = "category"
+        private const val QUERY_KEY = "query"
+
+        fun getIntent(context: Context, category: Category? = null, query: String? = null): Intent {
+            return Intent(context, SearchActivity::class.java).apply {
+                putExtra(CATEGORY_KEY, category)
+                putExtra(QUERY_KEY, query)
+            }
+        }
     }
 }

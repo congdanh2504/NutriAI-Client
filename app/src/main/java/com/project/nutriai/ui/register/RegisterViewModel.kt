@@ -1,7 +1,7 @@
 package com.project.nutriai.ui.register
 
 import androidx.lifecycle.viewModelScope
-import com.project.domain.use_case.RegisterUseCase
+import com.project.domain.use_case.auth.RegisterUseCase
 import com.project.nutriai.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

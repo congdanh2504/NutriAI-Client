@@ -10,6 +10,7 @@ appcompat = "1.7.0"
 material = "1.12.0"
 activity = "1.9.1"
 constraintlayout = "2.1.4"
+mpandroidchart = "v3.1.0"
 navigationFragmentKtx = "2.7.7"
 navigationUiKtx = "2.7.7"
 kotlinxCoroutines = "1.7.3"
@@ -25,6 +26,7 @@ coil = "2.4.0"
 androidxLifecycle = "2.8.6"
 androidxLifecycleExtensions = "2.2.0"
 gson = "2.10.1"
+markwon = "4.6.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -44,6 +46,7 @@ kotpref-core = { group = "com.chibatching.kotpref", name = "kotpref", version.re
 kotpref-initializer = { group = "com.chibatching.kotpref", name = "initializer", version.ref = "kotpref" }
 kotpref-enumSupport = { group = "com.chibatching.kotpref", name = "enum-support", version.ref = "kotpref" }
 kotpref-gsonSupport = { group = "com.chibatching.kotpref", name = "gson-support", version.ref = "kotpref" }
+mpandroidchart = { module = "com.github.PhilJay:MPAndroidChart", version.ref = "mpandroidchart" }
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofit-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
@@ -62,6 +65,7 @@ androidx-lifecycle-extensions = { group = "androidx.lifecycle", name = "lifecycl
 androidx-lifecycle-process = { group = "androidx.lifecycle", name = "lifecycle-process", version.ref = "androidxLifecycle" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+markwon-core = { module = "io.noties.markwon:core", version.ref = "markwon" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

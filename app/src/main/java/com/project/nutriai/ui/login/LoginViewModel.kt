@@ -1,10 +1,9 @@
 package com.project.nutriai.ui.login
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.project.data.utils.TokenPref
-import com.project.domain.use_case.GetUserDetail
-import com.project.domain.use_case.LoginUseCase
+import com.project.domain.use_case.auth.GetUserDetail
+import com.project.domain.use_case.auth.LoginUseCase
 import com.project.nutriai.ui.base.BaseViewModel
 import com.project.nutriai.utils.AppPref
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -26,7 +25,6 @@ class LoginViewModel @Inject constructor(
         _loginStatus.value = LoginViewState(isLoading = true)
         var hasAnsweredSurvey = false
         val isSuccess = try {
-            Log.d("LoginViewModel", "login: $email $password")
             val loginResponse = loginUseCase(email, password)
             TokenPref.accessToken = loginResponse.accessToken
             TokenPref.refreshToken = loginResponse.refreshToken

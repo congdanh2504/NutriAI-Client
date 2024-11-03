@@ -17,6 +17,7 @@ import com.project.nutriai.extensions.startActivity
 import com.project.nutriai.ui.base.BaseFragment
 import com.project.nutriai.ui.main.home.adapter.CategoryAdapter
 import com.project.nutriai.ui.main.home.adapter.MealAdapter
+import com.project.nutriai.ui.meal_detail.MealDetailsActivity
 import com.project.nutriai.ui.profile.ProfileActivity
 import com.project.nutriai.ui.search.SearchActivity
 import com.project.nutriai.utils.AppUtils
@@ -42,9 +43,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     private fun initView() {
         binding.rvCategories.adapter = CategoryAdapter(AppUtils.category) {
-            val intent = Intent(requireContext(), SearchActivity::class.java).apply {
-                putExtra(SearchActivity.CATEGORY_KEY, it.type)
-            }
+            val intent = SearchActivity.getIntent(requireContext(), category = it.type)
             startActivity(intent)
         }
     }
@@ -59,9 +58,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                 if (query.isEmpty()) return@setOnEditorActionListener true
                 requireActivity().hideKeyboard()
                 binding.etSearch.text.clear()
-                val intent = Intent(requireContext(), SearchActivity::class.java).apply {
-                    putExtra(SearchActivity.QUERY_KEY, query)
-                }
+                val intent = SearchActivity.getIntent(requireContext(), query = query)
                 startActivity(intent)
             }
             true
@@ -76,14 +73,20 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         }
         viewModel.recommendedMeals.collectInViewLifecycle(this) { recommendedMeals ->
             if (recommendedMeals.isNotEmpty()) {
-                binding.rvRecommended.adapter = MealAdapter(recommendedMeals)
+                binding.rvRecommended.adapter = MealAdapter(recommendedMeals) {
+                    val intent = MealDetailsActivity.getIntent(requireContext(), it.id)
+                    startActivity(intent)
+                }
                 binding.rvRecommended.isVisible = true
                 binding.shimmerRecommended.isInvisible = true
             }
         }
         viewModel.avoidedMeals.collectInViewLifecycle(this) { avoidedMeals ->
             if (avoidedMeals.isNotEmpty()) {
-                binding.rvAvoid.adapter = MealAdapter(avoidedMeals)
+                binding.rvAvoid.adapter = MealAdapter(avoidedMeals) {
+                    val intent = MealDetailsActivity.getIntent(requireContext(), it.id)
+                    startActivity(intent)
+                }
                 binding.rvAvoid.isVisible = true
                 binding.shimmerAvoid.isInvisible = true
             }

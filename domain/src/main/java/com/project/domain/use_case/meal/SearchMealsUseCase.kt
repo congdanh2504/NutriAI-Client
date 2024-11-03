@@ -1,4 +1,4 @@
-package com.project.domain.use_case
+package com.project.domain.use_case.meal
 
 import com.project.data.repository.MealRepository
 import com.project.domain.model.Category

@@ -1,4 +1,4 @@
-package com.project.domain.use_case
+package com.project.domain.use_case.auth
 
 import com.project.data.repository.AuthRepository
 import com.project.domain.model.UserDetail
