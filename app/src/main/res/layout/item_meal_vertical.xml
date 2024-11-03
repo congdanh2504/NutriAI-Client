@@ -2,10 +2,12 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="170dp"
+    android:layout_width="match_parent"
     android:layout_height="150dp"
-    android:layout_marginVertical="4dp"
-    android:layout_marginEnd="8dp"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="12dp"
+    android:clipToPadding="false"
     app:cardCornerRadius="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,7 +15,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/ivDishImage"
+            android:id="@+id/ivMeal"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:scaleType="centerCrop"
@@ -34,18 +36,33 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvDishName"
+            android:id="@+id/tvMealName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_marginStart="16dp"
             android:ellipsize="end"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/tvMealCategory"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Dish Name" />
+
+        <TextView
+            android:id="@+id/tvMealCategory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="16dp"
+            android:ellipsize="end"
+            android:textColor="@color/lightGray"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:text="Dish Name" />
+            tools:text="Dish Category" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

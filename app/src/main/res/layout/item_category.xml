@@ -16,7 +16,8 @@
             android:id="@+id/ivCategory"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:src="@drawable/noodle_soups" />
 
         <ImageView
             android:layout_width="match_parent"
@@ -28,11 +29,12 @@
             android:id="@+id/tvCategory"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginHorizontal="4dp"
             android:fontFamily="@font/inter_medium"
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="18sp"
-            tools:text="@string/breakfast" />
+            tools:text="@string/noodle_soups" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

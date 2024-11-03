@@ -139,4 +139,7 @@
     <string name="street_snacks_and_beverages">Street Snacks and Beverages</string>
     <string name="ver_1_0">ver 1.0</string>
     <string name="language">Language</string>
+    <string name="avoid_these">Avoid these</string>
+    <string name="no_meals_found">No meals found</string>
+    <string name="all">All</string>
 </resources>

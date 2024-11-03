@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import com.project.nutriai.R
 import com.project.nutriai.databinding.FragmentSettingsBinding
 import com.project.nutriai.extensions.flow.collectInViewLifecycle
 import com.project.nutriai.ui.base.BaseFragment
@@ -41,15 +42,14 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding, SettingsViewModel
     @SuppressLint("SetTextI18n")
     private fun bindViewModel() {
         viewModel.languageStream.collectInViewLifecycle(this) { language ->
-            when (language) {
-                LanguageEnum.ENGLISH -> binding.tvLanguage.text = "EN"
-                LanguageEnum.VIETNAMESE -> binding.tvLanguage.text = "VI"
+            binding.tvLanguage.text = when (language) {
+                LanguageEnum.ENGLISH -> "EN"
+                LanguageEnum.VIETNAMESE -> "VI"
             }
             binding.ivFlag.setImageResource(
-                if (language == LanguageEnum.ENGLISH) {
-                    com.project.nutriai.R.drawable.ic_usa_flag
-                } else {
-                    com.project.nutriai.R.drawable.ic_vietnam_flag
+                when (language) {
+                    LanguageEnum.ENGLISH -> R.drawable.ic_usa_flag
+                    LanguageEnum.VIETNAMESE -> R.drawable.ic_vietnam_flag
                 }
             )
         }

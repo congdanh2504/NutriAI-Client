@@ -7,7 +7,8 @@ import com.project.nutriai.databinding.ItemCategoryBinding
 import com.project.nutriai.ui.main.home.CategoryItem
 
 class CategoryAdapter(
-    private val category: List<CategoryItem>
+    private val category: List<CategoryItem>,
+    private val onCategoryClick: (CategoryItem) -> Unit
 ) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
@@ -28,7 +29,10 @@ class CategoryAdapter(
 
         fun bind(item: CategoryItem) {
             binding.ivCategory.setImageResource(item.image)
-            binding.tvCategory.text = item.name
+            binding.tvCategory.text = binding.root.context.getString(item.name)
+            binding.root.setOnClickListener {
+                onCategoryClick(item)
+            }
         }
     }
 

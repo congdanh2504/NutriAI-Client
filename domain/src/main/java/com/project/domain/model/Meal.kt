@@ -1,5 +1,21 @@
 package com.project.domain.model
 
+import com.project.data.source.remote.dto.MealNetwork
+
+data class Meal(
+    val id: String,
+    val name: String,
+    val category: Category,
+    val imageUrl: String
+)
+
+fun MealNetwork.toMeal() = Meal(
+    id = id,
+    name = name,
+    category = Category.valueOf(category),
+    imageUrl = imageUrl
+)
+
 enum class Category {
     NOODLE_SOUPS,
     RICE_DISHES,

@@ -60,4 +60,6 @@ dependencies {
     implementation(libs.kotpref.gsonSupport)
     implementation(libs.fancytoast)
     implementation(libs.gson)
+    implementation(libs.coil.kt)
+    implementation(libs.shimmer)
 }
