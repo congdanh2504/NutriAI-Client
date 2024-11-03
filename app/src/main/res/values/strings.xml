@@ -114,4 +114,29 @@
     <string name="personal_information">Personal Information</string>
     <string name="overal_health">Overal Health</string>
     <string name="health_overview">Health Overview</string>
+    <string name="search">Search</string>
+    <string name="search_for_meals">Search for meals</string>
+    <string name="view_profile">View Profile</string>
+    <string name="welcome_to_your_dashboard">Welcome to your dashboard</string>
+    <string name="hi_s">Hi, %s!</string>
+    <string name="categories">Categories</string>
+    <string name="breakfast">Breakfast</string>
+    <string name="lunch">Lunch</string>
+    <string name="dinner">Dinner</string>
+    <string name="recommended_for_you">Recommended for you</string>
+    <string name="snack">Snack</string>
+
+    <string name="noodle_soups">Noodle Soups</string>
+    <string name="rice_dishes">Rice Dishes</string>
+    <string name="soups">Soups</string>
+    <string name="hotpots">Hotpots</string>
+    <string name="appetizers_and_street_food">Appetizers and Street Food</string>
+    <string name="vegetarian_dishes">Vegetarian Dishes</string>
+    <string name="desserts_and_sweet_snacks">Desserts and Sweet Snacks</string>
+    <string name="seafood_dishes">Seafood Dishes</string>
+    <string name="grilled_dishes">Grilled Dishes</string>
+    <string name="steamed_dishes">Steamed Dishes</string>
+    <string name="street_snacks_and_beverages">Street Snacks and Beverages</string>
+    <string name="ver_1_0">ver 1.0</string>
+    <string name="language">Language</string>
 </resources>

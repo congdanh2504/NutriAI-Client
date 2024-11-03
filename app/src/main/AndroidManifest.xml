@@ -15,8 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NutriAI"
+        android:localeConfig="@xml/locale_config"
         android:usesCleartextTraffic="true"
-        tools:targetApi="31">
+        tools:targetApi="tiramisu">
         <activity
             android:name=".ui.profile.ProfileActivity"
             android:exported="false" />

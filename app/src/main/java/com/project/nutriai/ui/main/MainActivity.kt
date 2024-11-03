@@ -2,11 +2,7 @@ package com.project.nutriai.ui.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
@@ -46,7 +42,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
             when (it.itemId) {
                 R.id.home -> binding.viewPager.currentItem = TabLauncherPage.HOME.ordinal
                 R.id.analytics -> binding.viewPager.currentItem = TabLauncherPage.ANALYTICS.ordinal
-                R.id.profile -> binding.viewPager.currentItem = TabLauncherPage.PROFILE.ordinal
+                R.id.history -> binding.viewPager.currentItem = TabLauncherPage.HISTORY.ordinal
                 R.id.settings -> binding.viewPager.currentItem = TabLauncherPage.SETTINGS.ordinal
             }
             true
@@ -60,12 +56,12 @@ class MainPageAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
     override fun createFragment(position: Int) = when (position) {
         TabLauncherPage.HOME.ordinal -> HomeFragment()
         TabLauncherPage.ANALYTICS.ordinal -> HomeFragment()
-        TabLauncherPage.PROFILE.ordinal -> ProfileFragment()
+        TabLauncherPage.HISTORY.ordinal -> ProfileFragment()
         TabLauncherPage.SETTINGS.ordinal -> SettingsFragment()
         else -> throw IllegalArgumentException("Invalid position")
     }
 }
 
 enum class TabLauncherPage {
-    HOME, ANALYTICS, PROFILE, SETTINGS
+    HOME, ANALYTICS, HISTORY, SETTINGS
 }

@@ -2,10 +2,14 @@ package com.project.nutriai.ui.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import com.project.domain.model.Gender
 import com.project.nutriai.R
 import com.project.nutriai.databinding.ActivityProfileBinding
 import com.project.nutriai.extensions.flow.collectIn
@@ -22,6 +26,12 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding, ProfileViewModel>()
         ActivityProfileBinding.inflate(inflater)
 
     override fun init(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
         initListeners()
         bindViewModel()
     }
@@ -44,6 +54,7 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding, ProfileViewModel>()
             binding.tvPhysicalActivity.text = profile.physicalActivity.toReadableString(context)
             binding.tvNutritionGoal.text = profile.nutritionGoal.toReadableString(context)
             binding.tvDietPreference.text = profile.dietPreference.toReadableString(context)
+            binding.ivProfile.setImageResource(if (profile.gender == Gender.MALE) R.drawable.man else R.drawable.woman)
 
             if (profile.foodAllergies.isEmpty()) {
                 binding.cvFoodAllergies.isVisible = false
