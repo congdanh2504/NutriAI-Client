@@ -1,15 +1,10 @@
 package com.project.domain.model
 
-import com.project.data.source.remote.dto.UserDetailNetwork
-import com.project.data.source.remote.dto.UserResponse
-
 data class User(
     val email: String,
     val username: String,
     val hasAnsweredSurvey: Boolean
 )
-
-fun UserResponse.toUserDetail() = User(email, username, hasAnsweredSurvey)
 
 data class UserDetail(
     val fullName: String,
@@ -38,32 +33,6 @@ data class UserDetail(
         )
     }
 }
-
-fun UserDetail.toUserDetailNetwork() = UserDetailNetwork(
-    fullName,
-    age,
-    gender.name,
-    weight,
-    height,
-    nutritionGoal.name,
-    dietPreference.name,
-    foodAllergies.map { it.name },
-    physicalActivity.name,
-    healthConditions.map { it.name }
-)
-
-fun UserDetailNetwork.toUserDetail() = UserDetail(
-    fullName,
-    age,
-    Gender.valueOf(gender),
-    weight,
-    height,
-    NutritionGoal.valueOf(nutritionGoal),
-    DietPreference.valueOf(dietPreference),
-    foodAllergies.map { FoodAllergies.valueOf(it) },
-    PhysicalActivity.valueOf(physicalActivity),
-    healthConditions.map { HealthConditions.valueOf(it) }
-)
 
 enum class Gender {
     MALE, FEMALE

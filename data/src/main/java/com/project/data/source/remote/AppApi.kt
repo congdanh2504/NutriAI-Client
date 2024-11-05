@@ -1,7 +1,7 @@
 package com.project.data.source.remote
 
 import com.project.data.source.remote.dto.LoginRequest
-import com.project.data.source.remote.dto.LoginResponse
+import com.project.data.source.remote.dto.LoginResponseNetwork
 import com.project.data.source.remote.dto.MealDetailNetwork
 import com.project.data.source.remote.dto.MealNetwork
 import com.project.data.source.remote.dto.RegisterRequest
@@ -16,13 +16,13 @@ import retrofit2.http.Query
 interface AppApi {
 
     @POST("auth/register")
-    suspend fun register(@Body registerRequest: RegisterRequest): LoginResponse
+    suspend fun register(@Body registerRequest: RegisterRequest): LoginResponseNetwork
 
     @POST("auth/login")
-    suspend fun login(@Body loginRequest: LoginRequest): LoginResponse
+    suspend fun login(@Body loginRequest: LoginRequest): LoginResponseNetwork
 
     @POST("auth/refresh-token")
-    suspend fun refreshToken(refreshToken: String): LoginResponse
+    suspend fun refreshToken(refreshToken: String): LoginResponseNetwork
 
     @GET("user/me")
     suspend fun getCurrentUser(): UserResponse

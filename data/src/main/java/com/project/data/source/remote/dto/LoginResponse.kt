@@ -2,7 +2,7 @@ package com.project.data.source.remote.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class LoginResponse(
+data class LoginResponseNetwork(
     @SerializedName("access_token")
     val accessToken: String,
     @SerializedName("refresh_token")

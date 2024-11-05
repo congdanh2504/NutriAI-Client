@@ -1,8 +1,7 @@
 package com.project.domain.use_case.meal
 
-import com.project.data.repository.MealRepository
 import com.project.domain.model.Meal
-import com.project.domain.model.toMeal
+import com.project.domain.repository.MealRepository
 import javax.inject.Inject
 
 class GetRecommendedMealsUseCase @Inject constructor(
@@ -10,6 +9,6 @@ class GetRecommendedMealsUseCase @Inject constructor(
 ) {
 
     suspend operator fun invoke(): List<Meal> {
-        return mealRepository.getRecommendedMeals().map { it.toMeal() }
+        return mealRepository.getRecommendedMeals()
     }
 }

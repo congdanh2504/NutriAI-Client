@@ -1,9 +1,9 @@
 package com.project.data.di
 
-import com.project.data.repository.AuthRepository
 import com.project.data.repository.AuthRepositoryImpl
-import com.project.data.repository.MealRepository
 import com.project.data.repository.MealRepositoryImpl
+import com.project.domain.repository.AuthRepository
+import com.project.domain.repository.MealRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

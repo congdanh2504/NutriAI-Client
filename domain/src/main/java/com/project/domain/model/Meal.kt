@@ -1,10 +1,5 @@
 package com.project.domain.model
 
-import com.project.data.source.remote.dto.IngredientNetwork
-import com.project.data.source.remote.dto.MealDetailNetwork
-import com.project.data.source.remote.dto.MealNetwork
-import com.project.data.source.remote.dto.NutritionInfoNetwork
-
 data class Meal(
     val id: String,
     val name: String,
@@ -24,28 +19,11 @@ data class MealDetails(
     val instructions: String
 )
 
-fun MealDetailNetwork.toMealDetails() = MealDetails(
-    id = id,
-    name = name,
-    ingredients = ingredients.map { it.toIngredient() },
-    nutritionInfo = nutritionInfo.toNutritionInfo(),
-    suitableFor = suitableFor.map { SuitableForEnum.valueOf(it) },
-    category = Category.valueOf(category),
-    healthWarnings = healthWarnings.map { HealthWarningsEnum.valueOf(it) },
-    imageUrl = imageUrl,
-    instructions = instructions
-)
 
 data class Ingredient(
     val name: String,
     val quantity: Int,
     val unit: String
-)
-
-fun IngredientNetwork.toIngredient() = Ingredient(
-    name = name,
-    quantity = quantity,
-    unit = unit
 )
 
 data class NutritionInfo(
@@ -55,15 +33,6 @@ data class NutritionInfo(
     val fats: Int,
     val fiber: Int,
     val sugar: Int
-)
-
-fun NutritionInfoNetwork.toNutritionInfo() = NutritionInfo(
-    calories = calories,
-    protein = protein,
-    carbohydrates = carbohydrates,
-    fats = fats,
-    fiber = fiber,
-    sugar = sugar
 )
 
 enum class SuitableForEnum {
@@ -94,13 +63,6 @@ enum class HealthWarningsEnum {
     CONTAINS_SHELLFISH,
     SPICY
 }
-
-fun MealNetwork.toMeal() = Meal(
-    id = id,
-    name = name,
-    category = Category.valueOf(category),
-    imageUrl = imageUrl
-)
 
 enum class Category {
     NOODLE_SOUPS,

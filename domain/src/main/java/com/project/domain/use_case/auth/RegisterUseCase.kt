@@ -1,6 +1,6 @@
 package com.project.domain.use_case.auth
 
-import com.project.data.repository.AuthRepository
+import com.project.domain.repository.AuthRepository
 import javax.inject.Inject
 
 class RegisterUseCase @Inject constructor(

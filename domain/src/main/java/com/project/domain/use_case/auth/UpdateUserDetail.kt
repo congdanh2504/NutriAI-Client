@@ -1,8 +1,7 @@
 package com.project.domain.use_case.auth
 
-import com.project.data.repository.AuthRepository
 import com.project.domain.model.UserDetail
-import com.project.domain.model.toUserDetailNetwork
+import com.project.domain.repository.AuthRepository
 import javax.inject.Inject
 
 class UpdateUserDetail @Inject constructor(
@@ -10,6 +9,6 @@ class UpdateUserDetail @Inject constructor(
 ) {
 
     suspend operator fun invoke(userDetail: UserDetail) {
-        authRepository.updateUserDetail(userDetail.toUserDetailNetwork())
+        authRepository.updateUserDetail(userDetail)
     }
 }

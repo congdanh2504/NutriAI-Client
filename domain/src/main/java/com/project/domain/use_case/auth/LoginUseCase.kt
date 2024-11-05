@@ -1,7 +1,7 @@
 package com.project.domain.use_case.auth
 
-import com.project.data.repository.AuthRepository
-import com.project.data.source.remote.dto.LoginResponse
+import com.project.domain.model.LoginResponse
+import com.project.domain.repository.AuthRepository
 import javax.inject.Inject
 
 class LoginUseCase @Inject constructor(
