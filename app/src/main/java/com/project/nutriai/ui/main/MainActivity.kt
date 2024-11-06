@@ -8,7 +8,10 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.project.nutriai.R
 import com.project.nutriai.databinding.ActivityMainBinding
+import com.project.nutriai.extensions.startActivity
+import com.project.nutriai.ui.add_meal_history.AddMealHistoryActivity
 import com.project.nutriai.ui.base.BaseActivity
+import com.project.nutriai.ui.main.analytic.AnalyticFragment
 import com.project.nutriai.ui.main.home.HomeFragment
 import com.project.nutriai.ui.main.profile.ProfileFragment
 import com.project.nutriai.ui.main.settings.SettingsFragment
@@ -24,13 +27,20 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     }
 
     override fun init(savedInstanceState: Bundle?) {
+        initViews()
+        initListeners()
+    }
+
+    private fun initViews() {
+        binding.bottomNavigation.background = null
         setupViewPager()
     }
 
-    private fun setupViewPager() {
-        binding.viewPager.adapter = MainPageAdapter(this)
-        binding.viewPager.isUserInputEnabled = false
-        binding.viewPager.offscreenPageLimit = 4
+    private fun initListeners() {
+        binding.fabAdd.setOnClickListener {
+            startActivity<AddMealHistoryActivity>()
+        }
+
         binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
@@ -48,6 +58,13 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
             true
         }
     }
+
+    private fun setupViewPager() {
+        binding.viewPager.adapter = MainPageAdapter(this)
+        binding.viewPager.isUserInputEnabled = false
+        binding.viewPager.offscreenPageLimit = 4
+
+    }
 }
 
 class MainPageAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
@@ -55,7 +72,7 @@ class MainPageAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
 
     override fun createFragment(position: Int) = when (position) {
         TabLauncherPage.HOME.ordinal -> HomeFragment()
-        TabLauncherPage.ANALYTICS.ordinal -> HomeFragment()
+        TabLauncherPage.ANALYTICS.ordinal -> AnalyticFragment()
         TabLauncherPage.HISTORY.ordinal -> ProfileFragment()
         TabLauncherPage.SETTINGS.ordinal -> SettingsFragment()
         else -> throw IllegalArgumentException("Invalid position")

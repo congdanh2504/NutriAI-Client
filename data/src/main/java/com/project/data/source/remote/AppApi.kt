@@ -1,5 +1,6 @@
 package com.project.data.source.remote
 
+import com.project.data.source.remote.dto.HistoryMealNetwork
 import com.project.data.source.remote.dto.LoginRequest
 import com.project.data.source.remote.dto.LoginResponseNetwork
 import com.project.data.source.remote.dto.MealDetailNetwork
@@ -50,4 +51,7 @@ interface AppApi {
         @Query("category") category: String?,
         @Query("meal_name") name: String?
     ): List<MealNetwork>
+
+    @POST("meal/add-meal-history")
+    suspend fun addHistoryMeal(@Body historyMeal: HistoryMealNetwork)
 }

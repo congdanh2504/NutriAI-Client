@@ -8,11 +8,12 @@ import com.project.data.source.remote.dto.RegisterRequest
 import com.project.domain.model.LoginResponse
 import com.project.domain.model.User
 import com.project.domain.model.UserDetail
+import com.project.domain.repository.AuthRepository
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
     private val appApi: AppApi
-) : com.project.domain.repository.AuthRepository {
+) : AuthRepository {
     override suspend fun register(email: String, username: String, password: String): Boolean {
         try {
             appApi.register(RegisterRequest(email, username, password))

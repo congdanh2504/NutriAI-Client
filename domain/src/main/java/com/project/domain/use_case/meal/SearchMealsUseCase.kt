@@ -7,6 +7,6 @@ import javax.inject.Inject
 class SearchMealsUseCase @Inject constructor(
     private val mealRepository: MealRepository
 ) {
-    suspend operator fun invoke(category: Category?, name: String?) =
+    suspend operator fun invoke(category: Category? = null, name: String? = null) =
         mealRepository.searchMeals(category?.name, name)
 }

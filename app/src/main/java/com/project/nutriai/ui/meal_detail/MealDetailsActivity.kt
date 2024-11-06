@@ -3,17 +3,14 @@ package com.project.nutriai.ui.meal_detail
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.TypedValue
 import android.view.LayoutInflater
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import coil.load
 import coil.request.CachePolicy
-import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
-import com.github.mikephil.charting.utils.ColorTemplate
 import com.project.domain.model.Ingredient
 import com.project.domain.model.MealDetails
 import com.project.domain.model.NutritionInfo
@@ -22,11 +19,7 @@ import com.project.nutriai.databinding.ActivityMealDetailsBinding
 import com.project.nutriai.extensions.flow.collectIn
 import com.project.nutriai.ui.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
-import io.noties.markwon.AbstractMarkwonPlugin
 import io.noties.markwon.Markwon
-import io.noties.markwon.MarkwonVisitor
-import org.commonmark.node.Heading
-import org.commonmark.node.Node
 
 @AndroidEntryPoint
 class MealDetailsActivity : BaseActivity<ActivityMealDetailsBinding, MealDetailsViewModel>() {

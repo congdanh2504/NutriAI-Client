@@ -1,11 +1,13 @@
 package com.project.data.mapper
 
+import com.project.data.source.remote.dto.HistoryMealNetwork
 import com.project.data.source.remote.dto.IngredientNetwork
 import com.project.data.source.remote.dto.MealDetailNetwork
 import com.project.data.source.remote.dto.MealNetwork
 import com.project.data.source.remote.dto.NutritionInfoNetwork
 import com.project.domain.model.Category
 import com.project.domain.model.HealthWarningsEnum
+import com.project.domain.model.HistoryMeal
 import com.project.domain.model.Ingredient
 import com.project.domain.model.Meal
 import com.project.domain.model.MealDetails
@@ -44,4 +46,22 @@ fun MealNetwork.toDomain() = Meal(
     name = name,
     category = Category.valueOf(category),
     imageUrl = imageUrl
+)
+
+fun NutritionInfo.toNetwork() = NutritionInfoNetwork(
+    calories = calories,
+    protein = protein,
+    carbohydrates = carbohydrates,
+    fats = fats,
+    fiber = fiber,
+    sugar = sugar
+)
+
+fun HistoryMeal.toNetwork() = HistoryMealNetwork(
+    name = name,
+    nutritionInfo = nutritionInfo.toNetwork(),
+    suitableFor = suitableFor.map { it.name },
+    healthWarnings = healthWarnings.map { it.name },
+    category = category.name,
+    dateTime = dateTime
 )

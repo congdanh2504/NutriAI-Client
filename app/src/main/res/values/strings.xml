@@ -151,4 +151,17 @@
     <string name="fats_g">Fats: %1$dg</string>
     <string name="fiber_g">Fiber: %1$dg</string>
     <string name="sugar_g">Sugar: %1$dg</string>
+    <string name="add_meal_history">Add Meal History</string>
+    <string name="meal_name">Meal name</string>
+    <string name="enter_meal_name">Enter meal name...</string>
+    <string name="save">Save</string>
+    <string name="available_meals">Available Meals</string>
+    <string name="calories_kcal">Calories (kcal)</string>
+    <string name="protein_g_2">Protein (g)</string>
+    <string name="carbohydrates_g_2">Carbohydrates (g)</string>
+    <string name="fats_g_2">Fats (g)</string>
+    <string name="fiber_g_2">Fiber (g)</string>
+    <string name="sugar_g_2">Sugar (g)</string>
+    <string name="meal_added_successfully">Meal added successfully</string>
+    <string name="please_enter_meal_name">Please enter meal name</string>
 </resources>
