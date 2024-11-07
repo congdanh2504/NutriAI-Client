@@ -8,6 +8,7 @@ import com.project.data.source.remote.dto.NutritionInfoNetwork
 import com.project.domain.model.Category
 import com.project.domain.model.HealthWarningsEnum
 import com.project.domain.model.HistoryMeal
+import com.project.domain.model.HistoryMealType
 import com.project.domain.model.Ingredient
 import com.project.domain.model.Meal
 import com.project.domain.model.MealDetails
@@ -58,10 +59,21 @@ fun NutritionInfo.toNetwork() = NutritionInfoNetwork(
 )
 
 fun HistoryMeal.toNetwork() = HistoryMealNetwork(
+    id = id,
     name = name,
     nutritionInfo = nutritionInfo.toNetwork(),
     suitableFor = suitableFor.map { it.name },
     healthWarnings = healthWarnings.map { it.name },
     category = category.name,
+    dateTime = dateTime
+)
+
+fun HistoryMealNetwork.toDomain() = HistoryMeal(
+    id = id,
+    name = name,
+    nutritionInfo = nutritionInfo.toDomain(),
+    suitableFor = suitableFor.map { SuitableForEnum.valueOf(it) },
+    healthWarnings = healthWarnings.map { HealthWarningsEnum.valueOf(it) },
+    category = HistoryMealType.valueOf(category),
     dateTime = dateTime
 )

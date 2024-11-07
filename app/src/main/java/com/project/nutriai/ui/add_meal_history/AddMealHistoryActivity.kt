@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.TextView
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import com.google.android.material.card.MaterialCardView
 import com.project.domain.model.HistoryMeal
 import com.project.domain.model.HistoryMealType
@@ -19,6 +20,9 @@ import com.project.nutriai.ui.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.filterNotNull
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
@@ -29,6 +33,8 @@ class AddMealHistoryActivity :
 
     override val viewModel: AddMealHistoryViewModel by viewModels()
     private var selectedCategory = HistoryMealType.BREAKFAST
+    private val isEditMode by lazy { intent.getBooleanExtra(IS_EDIT_MODE, false) }
+    private val historyMeal by lazy { intent.getParcelableExtra<HistoryMeal>(HISTORY_MEAL) }
 
     override fun setupViewBinding(inflater: LayoutInflater): ActivityAddMealHistoryBinding {
         return ActivityAddMealHistoryBinding.inflate(inflater)
@@ -43,6 +49,9 @@ class AddMealHistoryActivity :
     private fun initViews() {
         binding.tvDate.text = getCurrentDate()
         binding.tvTime.text = getCurrentTime()
+        if (isEditMode) {
+            initEditMode()
+        }
     }
 
     private fun initListeners() {
@@ -59,7 +68,12 @@ class AddMealHistoryActivity :
             showAvailableMealsBottomSheet()
         }
         binding.btnSave.setOnClickListener {
-            addHistoryMeal()
+            addOrUpdateHistoryMeal()
+        }
+        binding.btnDelete.setOnClickListener {
+            historyMeal?.let {
+                viewModel.deleteHistoryMeal(it.id)
+            }
         }
         binding.cvBreakfast.setOnClickListener {
             selectCategory(HistoryMealType.BREAKFAST)
@@ -102,10 +116,40 @@ class AddMealHistoryActivity :
                 if (it.error.isNotEmpty()) {
                     showErrorMessage(it.error)
                 } else {
-                    showSuccessMessage(getString(R.string.meal_added_successfully))
+                    showSuccessMessage(getString(R.string.successfully))
                     finish()
                 }
             }
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun initEditMode() {
+        binding.btnDelete.isVisible = true
+        binding.tvTitle.text = getString(R.string.edit_history_meal)
+        binding.btnSave.text = getString(R.string.update)
+
+        historyMeal?.let {
+            binding.etMealName.setText(it.name)
+            binding.etCalories.setText(it.nutritionInfo.calories.toString())
+            binding.etProtein.setText(it.nutritionInfo.protein.toString())
+            binding.etCarbohydrates.setText(it.nutritionInfo.carbohydrates.toString())
+            binding.etFats.setText(it.nutritionInfo.fats.toString())
+            binding.etFiber.setText(it.nutritionInfo.fiber.toString())
+            binding.etSugar.setText(it.nutritionInfo.sugar.toString())
+
+            val inputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            val outputFormat = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
+            val date = inputFormat.parse(it.date)
+            binding.tvDate.text = date?.let { it1 -> outputFormat.format(it1) } ?: getCurrentDate()
+
+            val formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME
+            val dateTime = LocalDateTime.parse(it.dateTime, formatter)
+            val hourMinute = dateTime.format(DateTimeFormatter.ofPattern("HH:mm"))
+            binding.tvTime.text = hourMinute
+
+            selectedCategory = it.category
+            selectCategory(selectedCategory)
         }
     }
 
@@ -160,7 +204,7 @@ class AddMealHistoryActivity :
         bottomSheet.show(supportFragmentManager, TAG)
     }
 
-    private fun addHistoryMeal() {
+    private fun addOrUpdateHistoryMeal() {
         val mealName = binding.etMealName.text.toString()
         if (mealName.isEmpty()) {
             showErrorMessage(getString(R.string.please_enter_meal_name))
@@ -173,7 +217,15 @@ class AddMealHistoryActivity :
         val fats = binding.etFats.text.toString().toIntSafe()
         val fiber = binding.etFiber.text.toString().toIntSafe()
         val sugar = binding.etSugar.text.toString().toIntSafe()
-        val dateTime = binding.tvDate.text.toString() + " " + binding.tvTime.text.toString()
+        val input = binding.tvDate.text.toString() + " " + binding.tvTime.text.toString()
+
+        val inputFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm")
+        val outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+
+        val localDateTime = LocalDateTime.parse(input, inputFormatter)
+
+        val utcDateTime = localDateTime.atZone(ZoneOffset.UTC).toInstant()
+        val dateTime = outputFormatter.format(utcDateTime.atZone(ZoneOffset.UTC))
 
         val nutritionInfo = NutritionInfo(
             calories,
@@ -184,15 +236,31 @@ class AddMealHistoryActivity :
             sugar
         )
 
-        val meal = HistoryMeal(
-            mealName,
-            nutritionInfo,
-            viewModel.mealDetails.value.mealDetails?.suitableFor ?: emptyList(),
-            viewModel.mealDetails.value.mealDetails?.healthWarnings ?: emptyList(),
-            selectedCategory,
-            dateTime
-        )
-        viewModel.addHistoryMeal(meal)
+        if (isEditMode) {
+            val meal = HistoryMeal(
+                historyMeal?.id ?: "",
+                mealName,
+                nutritionInfo,
+                viewModel.mealDetails.value.mealDetails?.suitableFor ?: historyMeal?.suitableFor
+                ?: emptyList(),
+                viewModel.mealDetails.value.mealDetails?.healthWarnings
+                    ?: historyMeal?.healthWarnings ?: emptyList(),
+                selectedCategory,
+                dateTime
+            )
+            viewModel.updateHistoryMeal(meal)
+        } else {
+            val meal = HistoryMeal(
+                "",
+                mealName,
+                nutritionInfo,
+                viewModel.mealDetails.value.mealDetails?.suitableFor ?: emptyList(),
+                viewModel.mealDetails.value.mealDetails?.healthWarnings ?: emptyList(),
+                selectedCategory,
+                dateTime
+            )
+            viewModel.addHistoryMeal(meal)
+        }
     }
 
     private fun String.toIntSafe(): Int {
@@ -265,5 +333,10 @@ class AddMealHistoryActivity :
 
     private fun unSelectTextView(textView: TextView) {
         textView.setTextColor(getColor(R.color.darkGray))
+    }
+
+    companion object {
+        const val IS_EDIT_MODE = "is_edit_mode"
+        const val HISTORY_MEAL = "history_meal"
     }
 }

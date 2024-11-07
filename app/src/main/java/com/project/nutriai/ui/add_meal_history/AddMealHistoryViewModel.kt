@@ -3,8 +3,10 @@ package com.project.nutriai.ui.add_meal_history
 import androidx.lifecycle.viewModelScope
 import com.project.domain.model.HistoryMeal
 import com.project.domain.use_case.meal.AddHistoryMealUseCase
+import com.project.domain.use_case.meal.DeleteHistoryMealUseCase
 import com.project.domain.use_case.meal.GetMealDetailsByIdUseCase
 import com.project.domain.use_case.meal.SearchMealsUseCase
+import com.project.domain.use_case.meal.UpdateHistoryMealUseCase
 import com.project.nutriai.ui.base.BaseViewModel
 import com.project.nutriai.ui.meal_detail.MealDetailsViewState
 import com.project.nutriai.ui.search.SearchState
@@ -18,7 +20,9 @@ import javax.inject.Inject
 class AddMealHistoryViewModel @Inject constructor(
     private val searchMealsUseCase: SearchMealsUseCase,
     private val getMealDetailsByIdUseCase: GetMealDetailsByIdUseCase,
-    private val addHistoryMealUseCase: AddHistoryMealUseCase
+    private val addHistoryMealUseCase: AddHistoryMealUseCase,
+    private val deleteHistoryMealUseCase: DeleteHistoryMealUseCase,
+    private val updateHistoryMealUseCase: UpdateHistoryMealUseCase
 ) : BaseViewModel() {
 
     private val _searchResult = MutableStateFlow(SearchState())
@@ -59,6 +63,32 @@ class AddMealHistoryViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 addHistoryMealUseCase(historyMeal)
+                _addMealHistory.value = AddMealHistoryViewState()
+            } catch (e: Exception) {
+                _addMealHistory.value =
+                    AddMealHistoryViewState(error = e.message ?: "An unexpected error occurred")
+            }
+        }
+    }
+
+    fun updateHistoryMeal(historyMeal: HistoryMeal) {
+        _addMealHistory.value = AddMealHistoryViewState(isLoading = true)
+        viewModelScope.launch {
+            try {
+                updateHistoryMealUseCase(historyMeal)
+                _addMealHistory.value = AddMealHistoryViewState()
+            } catch (e: Exception) {
+                _addMealHistory.value =
+                    AddMealHistoryViewState(error = e.message ?: "An unexpected error occurred")
+            }
+        }
+    }
+
+    fun deleteHistoryMeal(id: String) {
+        _addMealHistory.value = AddMealHistoryViewState(isLoading = true)
+        viewModelScope.launch {
+            try {
+                deleteHistoryMealUseCase(id)
                 _addMealHistory.value = AddMealHistoryViewState()
             } catch (e: Exception) {
                 _addMealHistory.value =

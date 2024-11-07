@@ -164,4 +164,22 @@
     <string name="sugar_g_2">Sugar (g)</string>
     <string name="meal_added_successfully">Meal added successfully</string>
     <string name="please_enter_meal_name">Please enter meal name</string>
+    <string name="select_date_range">Select Date Range</string>
+    <string name="total_calories">Total calories</string>
+    <string name="this_month">This month</string>
+    <string name="today">Today</string>
+    <string name="yesterday">Yesterday</string>
+    <string name="tomorrow">Tomorrow</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+    <string name="add_history_meal">Add History Meal</string>
+    <string name="edit_history_meal">Edit History Meal</string>
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
+    <string name="successfully">Successfully</string>
 </resources>

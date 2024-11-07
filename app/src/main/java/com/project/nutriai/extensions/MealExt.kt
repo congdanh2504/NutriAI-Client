@@ -2,6 +2,7 @@ package com.project.nutriai.extensions
 
 import android.content.Context
 import com.project.domain.model.Category
+import com.project.domain.model.HistoryMealType
 import com.project.nutriai.R
 
 fun Category.toReadableString(context: Context): String {
@@ -17,6 +18,15 @@ fun Category.toReadableString(context: Context): String {
         Category.GRILLED_DISHES -> context.getString(R.string.grilled_dishes)
         Category.STEAMED_DISHES -> context.getString(R.string.steamed_dishes)
         Category.STREET_SNACKS_AND_BEVERAGES -> context.getString(R.string.street_snacks_and_beverages)
+    }
+}
+
+fun HistoryMealType.toReadableString(context: Context): String {
+    return when (this) {
+        HistoryMealType.BREAKFAST -> context.getString(R.string.breakfast)
+        HistoryMealType.LUNCH -> context.getString(R.string.lunch)
+        HistoryMealType.DINNER -> context.getString(R.string.dinner)
+        HistoryMealType.SNACK -> context.getString(R.string.snack)
     }
 }
 

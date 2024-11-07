@@ -1,5 +1,8 @@
 package com.project.domain.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
 data class Meal(
     val id: String,
     val name: String,
@@ -26,6 +29,7 @@ data class Ingredient(
     val unit: String
 )
 
+@Parcelize
 data class NutritionInfo(
     val calories: Int,
     val protein: Int,
@@ -33,7 +37,7 @@ data class NutritionInfo(
     val fats: Int,
     val fiber: Int,
     val sugar: Int
-)
+): Parcelable
 
 enum class SuitableForEnum {
     GLUTEN_FREE,

@@ -3,6 +3,8 @@ package com.project.data.source.remote.dto
 import com.google.gson.annotations.SerializedName
 
 data class HistoryMealNetwork(
+    @SerializedName("_id")
+    val id: String,
     @SerializedName("meal_name")
     val name: String,
     @SerializedName("nutrition_info")

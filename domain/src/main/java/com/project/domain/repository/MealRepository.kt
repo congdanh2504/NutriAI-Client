@@ -11,4 +11,7 @@ interface MealRepository {
     suspend fun getMealById(id: String): MealDetails
     suspend fun searchMeals(category: String?, name: String?): List<Meal>
     suspend fun addHistoryMeal(historyMeal: HistoryMeal)
+    suspend fun getHistoryMeals(startDate: String?, endDate: String?): List<HistoryMeal>
+    suspend fun updateHistoryMeal(historyMeal: HistoryMeal)
+    suspend fun deleteHistoryMeal(id: String)
 }

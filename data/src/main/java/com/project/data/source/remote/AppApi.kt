@@ -9,6 +9,7 @@ import com.project.data.source.remote.dto.RegisterRequest
 import com.project.data.source.remote.dto.UserDetailNetwork
 import com.project.data.source.remote.dto.UserResponse
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
@@ -54,4 +55,16 @@ interface AppApi {
 
     @POST("meal/add-meal-history")
     suspend fun addHistoryMeal(@Body historyMeal: HistoryMealNetwork)
+
+    @GET("meal/meal-history")
+    suspend fun getHistoryMeals(
+        @Query("start_date") startDate: String?,
+        @Query("end_date") endDate: String?
+    ): List<HistoryMealNetwork>
+
+    @POST("meal/meal-history/{id}")
+    suspend fun updateHistoryMeal(@Path("id") id: String, @Body historyMeal: HistoryMealNetwork)
+
+    @DELETE("meal/meal-history/{id}")
+    suspend fun deleteHistoryMeal(@Path("id") id: String)
 }

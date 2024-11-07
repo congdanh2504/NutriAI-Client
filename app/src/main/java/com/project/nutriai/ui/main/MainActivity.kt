@@ -13,7 +13,7 @@ import com.project.nutriai.ui.add_meal_history.AddMealHistoryActivity
 import com.project.nutriai.ui.base.BaseActivity
 import com.project.nutriai.ui.main.analytic.AnalyticFragment
 import com.project.nutriai.ui.main.home.HomeFragment
-import com.project.nutriai.ui.main.profile.ProfileFragment
+import com.project.nutriai.ui.main.meal_history.MealHistoryFragment
 import com.project.nutriai.ui.main.settings.SettingsFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -73,7 +73,7 @@ class MainPageAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
     override fun createFragment(position: Int) = when (position) {
         TabLauncherPage.HOME.ordinal -> HomeFragment()
         TabLauncherPage.ANALYTICS.ordinal -> AnalyticFragment()
-        TabLauncherPage.HISTORY.ordinal -> ProfileFragment()
+        TabLauncherPage.HISTORY.ordinal -> MealHistoryFragment()
         TabLauncherPage.SETTINGS.ordinal -> SettingsFragment()
         else -> throw IllegalArgumentException("Invalid position")
     }

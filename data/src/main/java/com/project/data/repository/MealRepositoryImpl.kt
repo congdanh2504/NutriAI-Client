@@ -24,4 +24,15 @@ class MealRepositoryImpl @Inject constructor(
     override suspend fun addHistoryMeal(historyMeal: HistoryMeal) {
         appApi.addHistoryMeal(historyMeal.toNetwork())
     }
+
+    override suspend fun getHistoryMeals(startDate: String?, endDate: String?) =
+        appApi.getHistoryMeals(startDate, endDate).map { it.toDomain() }
+
+    override suspend fun updateHistoryMeal(historyMeal: HistoryMeal) {
+        appApi.updateHistoryMeal(historyMeal.id, historyMeal.toNetwork())
+    }
+
+    override suspend fun deleteHistoryMeal(id: String) {
+        appApi.deleteHistoryMeal(id)
+    }
 }
