@@ -44,6 +44,7 @@ class SettingsViewModel @Inject constructor() : BaseViewModel() {
         AppPref.userDetail = UserDetail.EMPTY
         TokenPref.accessToken = ""
         TokenPref.refreshToken = ""
+        TokenPref.userId = ""
     }
 }
 

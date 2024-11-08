@@ -25,6 +25,7 @@ import io.noties.markwon.Markwon
 class MealDetailsActivity : BaseActivity<ActivityMealDetailsBinding, MealDetailsViewModel>() {
     override val viewModel: MealDetailsViewModel by viewModels()
     private val mealId by lazy { intent.getStringExtra(MEAL_ID) }
+    private var isFavorite = false
 
     override fun setupViewBinding(inflater: LayoutInflater) =
         ActivityMealDetailsBinding.inflate(inflater)
@@ -35,6 +36,7 @@ class MealDetailsActivity : BaseActivity<ActivityMealDetailsBinding, MealDetails
             return
         }
         viewModel.getMealDetailsById(mealId!!)
+        viewModel.getFavoriteMealById(mealId!!)
         initView()
         initListeners()
         bindViewModel()
@@ -50,6 +52,13 @@ class MealDetailsActivity : BaseActivity<ActivityMealDetailsBinding, MealDetails
         }
         binding.ivExpand.setOnClickListener {
             viewModel.toggleExpand()
+        }
+        binding.ivHeart.setOnClickListener {
+            if (isFavorite) {
+                viewModel.removeFavoriteMealById(viewModel.favoriteMeal.value!!.id)
+            } else {
+                viewModel.addFavoriteMeal(viewModel.mealDetails.value.mealDetails!!)
+            }
         }
     }
 
@@ -72,6 +81,14 @@ class MealDetailsActivity : BaseActivity<ActivityMealDetailsBinding, MealDetails
                 if (isExpand) R.drawable.ic_sort_up else R.drawable.ic_sort_down
             )
             binding.tvInstructions.isVisible = isExpand
+        }
+        viewModel.favoriteMeal.collectIn(this) {
+            isFavorite = it != null
+            if (it != null) {
+                binding.ivHeart.setImageResource(R.drawable.ic_heart_full)
+            } else {
+                binding.ivHeart.setImageResource(R.drawable.ic_heart)
+            }
         }
     }
 

@@ -1,4 +1,4 @@
-package com.project.data.source.remote.dto
+package com.project.data.source.remote.model
 
 data class RegisterRequest(
     val email: String,

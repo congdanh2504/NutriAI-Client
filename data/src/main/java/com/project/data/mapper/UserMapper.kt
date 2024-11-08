@@ -1,7 +1,8 @@
 package com.project.data.mapper
 
-import com.project.data.source.remote.dto.UserDetailNetwork
-import com.project.data.source.remote.dto.UserResponse
+import com.project.data.source.remote.model.UserDetailNetwork
+import com.project.data.source.remote.model.UserDetailResponse
+import com.project.data.source.remote.model.UserResponse
 import com.project.domain.model.DietPreference
 import com.project.domain.model.FoodAllergies
 import com.project.domain.model.Gender
@@ -37,4 +38,17 @@ fun UserDetail.toNetwork() = UserDetailNetwork(
     foodAllergies.map { it.name },
     physicalActivity.name,
     healthConditions.map { it.name }
+)
+
+fun UserDetailResponse.toDomain() = UserDetail(
+    fullName,
+    age,
+    Gender.valueOf(gender),
+    weight,
+    height,
+    NutritionGoal.valueOf(nutritionGoal),
+    DietPreference.valueOf(dietPreference),
+    foodAllergies.map { FoodAllergies.valueOf(it) },
+    PhysicalActivity.valueOf(physicalActivity),
+    healthConditions.map { HealthConditions.valueOf(it) }
 )

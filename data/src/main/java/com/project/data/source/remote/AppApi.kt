@@ -1,13 +1,14 @@
 package com.project.data.source.remote
 
-import com.project.data.source.remote.dto.HistoryMealNetwork
-import com.project.data.source.remote.dto.LoginRequest
-import com.project.data.source.remote.dto.LoginResponseNetwork
-import com.project.data.source.remote.dto.MealDetailNetwork
-import com.project.data.source.remote.dto.MealNetwork
-import com.project.data.source.remote.dto.RegisterRequest
-import com.project.data.source.remote.dto.UserDetailNetwork
-import com.project.data.source.remote.dto.UserResponse
+import com.project.data.source.remote.model.HistoryMealNetwork
+import com.project.data.source.remote.model.LoginRequest
+import com.project.data.source.remote.model.LoginResponseNetwork
+import com.project.data.source.remote.model.MealDetailNetwork
+import com.project.data.source.remote.model.MealNetwork
+import com.project.data.source.remote.model.RegisterRequest
+import com.project.data.source.remote.model.UserDetailNetwork
+import com.project.data.source.remote.model.UserDetailResponse
+import com.project.data.source.remote.model.UserResponse
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -33,7 +34,7 @@ interface AppApi {
     suspend fun updateUserDetail(@Body userDetailNetwork: UserDetailNetwork)
 
     @GET("user/user_detail")
-    suspend fun getUserDetail(): UserDetailNetwork
+    suspend fun getUserDetail(): UserDetailResponse
 
     @GET("meal/")
     suspend fun getAllMeals(): List<MealNetwork>

@@ -3,8 +3,9 @@ package com.project.data.repository
 import com.project.data.mapper.toDomain
 import com.project.data.mapper.toNetwork
 import com.project.data.source.remote.AppApi
-import com.project.data.source.remote.dto.LoginRequest
-import com.project.data.source.remote.dto.RegisterRequest
+import com.project.data.source.remote.model.LoginRequest
+import com.project.data.source.remote.model.RegisterRequest
+import com.project.data.utils.TokenPref
 import com.project.domain.model.LoginResponse
 import com.project.domain.model.User
 import com.project.domain.model.UserDetail
@@ -39,6 +40,8 @@ class AuthRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getUserDetail(): UserDetail {
-        return appApi.getUserDetail().toDomain()
+        val user = appApi.getUserDetail()
+        TokenPref.userId = user.userId
+        return user.toDomain()
     }
 }

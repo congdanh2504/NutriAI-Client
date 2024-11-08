@@ -1,10 +1,11 @@
 package com.project.data.mapper
 
-import com.project.data.source.remote.dto.HistoryMealNetwork
-import com.project.data.source.remote.dto.IngredientNetwork
-import com.project.data.source.remote.dto.MealDetailNetwork
-import com.project.data.source.remote.dto.MealNetwork
-import com.project.data.source.remote.dto.NutritionInfoNetwork
+import com.project.data.source.local.model.MealDetailEntity
+import com.project.data.source.remote.model.HistoryMealNetwork
+import com.project.data.source.remote.model.IngredientNetwork
+import com.project.data.source.remote.model.MealDetailNetwork
+import com.project.data.source.remote.model.MealNetwork
+import com.project.data.source.remote.model.NutritionInfoNetwork
 import com.project.domain.model.Category
 import com.project.domain.model.HealthWarningsEnum
 import com.project.domain.model.HistoryMeal
@@ -76,4 +77,29 @@ fun HistoryMealNetwork.toDomain() = HistoryMeal(
     healthWarnings = healthWarnings.map { HealthWarningsEnum.valueOf(it) },
     category = HistoryMealType.valueOf(category),
     dateTime = dateTime
+)
+
+fun MealDetails.toEntity(userId: String) = MealDetailEntity(
+    id = id,
+    userId = userId,
+    name = name,
+    ingredients = ingredients,
+    nutritionInfo = nutritionInfo,
+    suitableFor = suitableFor.map { it.name },
+    category = category.name,
+    healthWarnings = healthWarnings.map { it.name },
+    imageUrl = imageUrl,
+    instructions = instructions
+)
+
+fun MealDetailEntity.toDomain() = MealDetails(
+    id = id,
+    name = name,
+    ingredients = ingredients,
+    nutritionInfo = nutritionInfo,
+    suitableFor = suitableFor.map { SuitableForEnum.valueOf(it) },
+    category = Category.valueOf(category),
+    healthWarnings = healthWarnings.map { HealthWarningsEnum.valueOf(it) },
+    imageUrl = imageUrl,
+    instructions = instructions
 )

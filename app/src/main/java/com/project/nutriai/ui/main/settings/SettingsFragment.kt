@@ -10,6 +10,7 @@ import com.project.nutriai.R
 import com.project.nutriai.databinding.FragmentSettingsBinding
 import com.project.nutriai.extensions.flow.collectInViewLifecycle
 import com.project.nutriai.ui.base.BaseFragment
+import com.project.nutriai.ui.favorite.FavoriteMealActivity
 import com.project.nutriai.ui.login.LoginActivity
 
 class SettingsFragment : BaseFragment<FragmentSettingsBinding, SettingsViewModel>() {
@@ -36,6 +37,10 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding, SettingsViewModel
         }
         binding.cvLanguage.setOnClickListener {
             viewModel.changeLanguage()
+        }
+        binding.cvFavorite.setOnClickListener {
+            val intent = Intent(requireContext(), FavoriteMealActivity::class.java)
+            startActivity(intent)
         }
     }
 

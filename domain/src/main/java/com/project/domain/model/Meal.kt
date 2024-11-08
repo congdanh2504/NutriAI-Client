@@ -22,7 +22,6 @@ data class MealDetails(
     val instructions: String
 )
 
-
 data class Ingredient(
     val name: String,
     val quantity: Int,

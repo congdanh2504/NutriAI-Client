@@ -1,8 +1,10 @@
 package com.project.data.di
 
 import com.project.data.repository.AuthRepositoryImpl
+import com.project.data.repository.LocalRepositoryImpl
 import com.project.data.repository.MealRepositoryImpl
 import com.project.domain.repository.AuthRepository
+import com.project.domain.repository.LocalRepository
 import com.project.domain.repository.MealRepository
 import dagger.Binds
 import dagger.Module
@@ -18,4 +20,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindMealRepository(impl: MealRepositoryImpl): MealRepository
+
+    @Binds
+    abstract fun bindLocalRepository(impl: LocalRepositoryImpl): LocalRepository
 }
