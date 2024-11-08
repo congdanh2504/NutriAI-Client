@@ -9,6 +9,7 @@ import com.project.nutriai.databinding.FragmentHealthBinding
 import com.project.nutriai.extensions.flow.collectInViewLifecycle
 import com.project.nutriai.ui.base.BaseFragment
 import com.project.nutriai.ui.questions.nutri_object.AnswerAdapter
+import com.project.nutriai.utils.AppPref
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,6 +33,7 @@ class HealthFragment : BaseFragment<FragmentHealthBinding, HealthViewModel>() {
     private fun initView() {
         binding.rvHealth.layoutManager = LinearLayoutManager(requireContext())
         binding.rvHealth.adapter = adapter
+        viewModel.onHealthSelected(AppPref.userDetail.healthConditions)
     }
 
     private fun bindViewModel() {

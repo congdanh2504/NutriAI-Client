@@ -34,4 +34,16 @@ class LifestyleViewModel @Inject constructor() : BaseViewModel() {
         }
         AppPref.userDetail = AppPref.userDetail.copy(physicalActivity = lifestyle)
     }
+
+    fun onLifestyleSelected(physicalActivity: PhysicalActivity) {
+        val id = when (physicalActivity) {
+            PhysicalActivity.NO_EXERCISE -> 1
+            PhysicalActivity.LIGHT -> 2
+            PhysicalActivity.MODERATE -> 3
+            else -> 4
+        }
+        _lifestyles.value = _lifestyles.value.map {
+            it.copy(isSelected = it.id == id)
+        }
+    }
 }

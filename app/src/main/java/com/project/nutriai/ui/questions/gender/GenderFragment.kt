@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import com.project.domain.model.Gender
 import com.project.nutriai.R
 import com.project.nutriai.databinding.FragmentGenderBinding
 import com.project.nutriai.extensions.flow.collectInViewLifecycle
 import com.project.nutriai.ui.base.BaseFragment
+import com.project.nutriai.utils.AppPref
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -40,7 +42,13 @@ class GenderFragment : BaseFragment<FragmentGenderBinding, GenderViewModel>() {
     }
 
     private fun bindViewModel() {
-        viewModel.setGenderSelected(R.string.male)
+        viewModel.setGenderSelected(
+            if (AppPref.userDetail.gender == Gender.MALE) {
+                R.string.male
+            } else {
+                R.string.female
+            }
+        )
         viewModel.genderList.collectInViewLifecycle(this) {
             genderAdapter.submitList(it.toMutableList())
         }

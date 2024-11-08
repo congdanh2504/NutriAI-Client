@@ -1,8 +1,10 @@
 package com.project.nutriai.ui.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -15,12 +17,18 @@ import com.project.nutriai.databinding.ActivityProfileBinding
 import com.project.nutriai.extensions.flow.collectIn
 import com.project.nutriai.extensions.toReadableString
 import com.project.nutriai.ui.base.BaseActivity
+import com.project.nutriai.ui.questions.QuestionsActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ProfileActivity : BaseActivity<ActivityProfileBinding, ProfileViewModel>() {
 
     override val viewModel: ProfileViewModel by viewModels()
+
+    private val updateLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            viewModel.onProfileUpdated()
+        }
 
     override fun setupViewBinding(inflater: LayoutInflater) =
         ActivityProfileBinding.inflate(inflater)
@@ -39,6 +47,12 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding, ProfileViewModel>()
     private fun initListeners() {
         binding.ivBack.setOnClickListener {
             finish()
+        }
+        binding.ivEdit.setOnClickListener {
+            val intent = Intent(this, QuestionsActivity::class.java).apply {
+                putExtra(QuestionsActivity.IS_EDIT_MODE, true)
+            }
+            updateLauncher.launch(intent)
         }
     }
 

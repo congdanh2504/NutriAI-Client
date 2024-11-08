@@ -9,6 +9,7 @@ import com.project.nutriai.databinding.FragmentAllergyBinding
 import com.project.nutriai.extensions.flow.collectInViewLifecycle
 import com.project.nutriai.ui.base.BaseFragment
 import com.project.nutriai.ui.questions.nutri_object.AnswerAdapter
+import com.project.nutriai.utils.AppPref
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,6 +33,7 @@ class AllergyFragment : BaseFragment<FragmentAllergyBinding, AllergyViewModel>()
     private fun initView() {
         binding.rvAllergy.layoutManager = LinearLayoutManager(requireContext())
         binding.rvAllergy.adapter = adapter
+        viewModel.onAllergySelected(AppPref.userDetail.foodAllergies)
     }
 
     private fun bindViewModel() {

@@ -37,4 +37,16 @@ class DietViewModel @Inject constructor() : BaseViewModel() {
         AppPref.userDetail = AppPref.userDetail.copy(dietPreference = diet)
     }
 
+    fun onDietSelected(dietPreference: DietPreference) {
+        val id = when (dietPreference) {
+            DietPreference.VEGETARIAN -> 1
+            DietPreference.VEGAN -> 2
+            DietPreference.KETO -> 3
+            DietPreference.PALEO -> 4
+            else -> 5
+        }
+        _diet.value = _diet.value.map {
+            it.copy(isSelected = it.id == id)
+        }
+    }
 }

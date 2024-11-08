@@ -12,4 +12,8 @@ open class BaseViewModel @Inject constructor() : ViewModel() {
 
     private val _profile = MutableStateFlow(AppPref.userDetail)
     val profile = _profile.asStateFlow()
+
+    fun onProfileUpdated() {
+        _profile.value = AppPref.userDetail.copy()
+    }
 }

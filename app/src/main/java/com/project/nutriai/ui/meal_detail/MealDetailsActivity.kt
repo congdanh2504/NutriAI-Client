@@ -35,12 +35,12 @@ class MealDetailsActivity : BaseActivity<ActivityMealDetailsBinding, MealDetails
             return
         }
         viewModel.getMealDetailsById(mealId!!)
-        initViews()
+        initView()
         initListeners()
         bindViewModel()
     }
 
-    private fun initViews() {
+    private fun initView() {
 
     }
 

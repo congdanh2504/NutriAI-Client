@@ -36,6 +36,19 @@ class NutriObjectViewModel @Inject constructor() : BaseViewModel() {
         }
         AppPref.userDetail = AppPref.userDetail.copy(nutritionGoal = goal)
     }
+
+    fun onAnswerSelected(nutritionGoal: NutritionGoal) {
+        val id = when (nutritionGoal) {
+            NutritionGoal.GAIN_WEIGHT -> 1
+            NutritionGoal.LOSE_WEIGHT -> 2
+            NutritionGoal.MAINTAIN_WEIGHT -> 3
+            NutritionGoal.IMPROVE_HEALTH -> 4
+            NutritionGoal.BUILD_MUSCLE -> 5
+        }
+        _answers.value = _answers.value.map {
+            it.copy(isSelected = it.id == id)
+        }
+    }
 }
 
 data class Answer(

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.project.nutriai.databinding.FragmentNutriObjectBinding
 import com.project.nutriai.extensions.flow.collectInViewLifecycle
 import com.project.nutriai.ui.base.BaseFragment
+import com.project.nutriai.utils.AppPref
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,6 +32,7 @@ class NutriObjectFragment : BaseFragment<FragmentNutriObjectBinding, NutriObject
     private fun initView() {
         binding.rvNutriObject.layoutManager = LinearLayoutManager(requireContext())
         binding.rvNutriObject.adapter = adapter
+        viewModel.onAnswerSelected(AppPref.userDetail.nutritionGoal)
     }
 
     private fun bindViewModel() {

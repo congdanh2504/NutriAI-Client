@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lightGreen">
+    android:background="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/toolBar"
@@ -33,17 +33,34 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/ivEdit"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_edit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/darkGray" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageView
-        android:id="@+id/ivProfile"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/man"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvProfile"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        app:cardCornerRadius="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolBar" />
+        app:layout_constraintTop_toBottomOf="@+id/toolBar">
+
+        <ImageView
+            android:id="@+id/ivProfile"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:src="@drawable/man" />
+
+    </com.google.android.material.card.MaterialCardView>
 
     <TextView
         android:id="@+id/tvName"
@@ -55,7 +72,7 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivProfile"
+        app:layout_constraintTop_toBottomOf="@+id/cvProfile"
         tools:text="John Doe" />
 
     <ScrollView
@@ -78,6 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
+                app:cardBackgroundColor="@color/lightGreen"
                 app:cardCornerRadius="16dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -209,6 +227,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
+                app:cardBackgroundColor="@color/lightGreen"
                 app:cardCornerRadius="16dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -329,6 +348,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
+                app:cardBackgroundColor="@color/lightGreen"
                 app:cardCornerRadius="16dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -378,6 +398,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/lightGreen"
                 app:cardCornerRadius="16dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout

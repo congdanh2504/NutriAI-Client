@@ -9,6 +9,7 @@ import com.project.nutriai.databinding.FragmentDietBinding
 import com.project.nutriai.extensions.flow.collectInViewLifecycle
 import com.project.nutriai.ui.base.BaseFragment
 import com.project.nutriai.ui.questions.nutri_object.AnswerAdapter
+import com.project.nutriai.utils.AppPref
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,6 +33,7 @@ class DietFragment : BaseFragment<FragmentDietBinding, DietViewModel>() {
     private fun initView() {
         binding.rvDiet.layoutManager = LinearLayoutManager(requireContext())
         binding.rvDiet.adapter = adapter
+        viewModel.onDietSelected(AppPref.userDetail.dietPreference)
     }
 
     private fun bindViewModel() {

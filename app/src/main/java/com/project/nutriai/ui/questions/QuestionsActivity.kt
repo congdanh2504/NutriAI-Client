@@ -20,6 +20,7 @@ class QuestionsActivity : BaseActivity<ActivityQuestionsBinding, QuestionsViewMo
 
     override val viewModel: QuestionsViewModel by viewModels()
     private val questionPageAdapter by lazy { QuestionPageAdapter(this) }
+    private val isEditMode by lazy { intent.getBooleanExtra(IS_EDIT_MODE, false) }
     private var rvPos = 0
         set(value) {
             field = value
@@ -71,11 +72,17 @@ class QuestionsActivity : BaseActivity<ActivityQuestionsBinding, QuestionsViewMo
     private fun bindViewModel() {
         viewModel.updateStatus.filterNotNull().collectIn(this) {
             if (it) {
-                startActivity(Intent(this, MainActivity::class.java))
+                if (!isEditMode) {
+                    startActivity(Intent(this, MainActivity::class.java))
+                }
                 finish()
             } else {
                 showErrorMessage("Failed to update user detail")
             }
         }
+    }
+
+    companion object {
+        const val IS_EDIT_MODE = "is_edit_mode"
     }
 }

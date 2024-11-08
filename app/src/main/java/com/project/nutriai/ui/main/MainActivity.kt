@@ -27,11 +27,11 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     }
 
     override fun init(savedInstanceState: Bundle?) {
-        initViews()
+        initView()
         initListeners()
     }
 
-    private fun initViews() {
+    private fun initView() {
         binding.bottomNavigation.background = null
         setupViewPager()
     }

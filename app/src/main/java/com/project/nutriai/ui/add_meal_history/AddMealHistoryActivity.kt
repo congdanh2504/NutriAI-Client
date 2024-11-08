@@ -41,12 +41,12 @@ class AddMealHistoryActivity :
     }
 
     override fun init(savedInstanceState: Bundle?) {
-        initViews()
+        initView()
         initListeners()
         bindViewModel()
     }
 
-    private fun initViews() {
+    private fun initView() {
         binding.tvDate.text = getCurrentDate()
         binding.tvTime.text = getCurrentTime()
         if (isEditMode) {

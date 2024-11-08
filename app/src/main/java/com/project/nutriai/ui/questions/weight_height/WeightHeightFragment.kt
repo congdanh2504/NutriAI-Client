@@ -1,5 +1,6 @@
 package com.project.nutriai.ui.questions.weight_height
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,6 +8,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import com.project.nutriai.databinding.FragmentWeightHeightBinding
 import com.project.nutriai.ui.base.BaseFragment
+import com.project.nutriai.utils.AppPref
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,8 +27,10 @@ class WeightHeightFragment : BaseFragment<FragmentWeightHeightBinding, WeightHei
         bindViewModel()
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initView() {
-
+        binding.etWeight.setText(AppPref.userDetail.weight.toString())
+        binding.etHeight.setText(AppPref.userDetail.height.toString())
     }
 
     private fun initListener() {

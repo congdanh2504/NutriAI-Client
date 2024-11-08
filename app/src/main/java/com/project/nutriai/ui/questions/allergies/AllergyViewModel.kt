@@ -48,4 +48,20 @@ class AllergyViewModel @Inject constructor() : BaseViewModel() {
         AppPref.userDetail = AppPref.userDetail.copy(foodAllergies = allergies)
     }
 
+    fun onAllergySelected(foodAllergies: List<FoodAllergies>) {
+        val ids = foodAllergies.map {
+            when (it) {
+                FoodAllergies.GLUTEN -> 1
+                FoodAllergies.LACTOSE -> 2
+                FoodAllergies.SEAFOOD -> 3
+                FoodAllergies.PEANUTS -> 4
+                FoodAllergies.NUTS -> 5
+                FoodAllergies.EGGS -> 6
+                else -> 7
+            }
+        }
+        _allergies.value = _allergies.value.map {
+            it.copy(isSelected = ids.contains(it.id))
+        }
+    }
 }

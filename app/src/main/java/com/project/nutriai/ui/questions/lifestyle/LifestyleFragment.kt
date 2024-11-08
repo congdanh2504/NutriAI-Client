@@ -9,6 +9,7 @@ import com.project.nutriai.databinding.FragmentLifestyleBinding
 import com.project.nutriai.extensions.flow.collectInViewLifecycle
 import com.project.nutriai.ui.base.BaseFragment
 import com.project.nutriai.ui.questions.nutri_object.AnswerAdapter
+import com.project.nutriai.utils.AppPref
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,6 +33,7 @@ class LifestyleFragment : BaseFragment<FragmentLifestyleBinding, LifestyleViewMo
     private fun initView() {
         binding.rvLifestyle.layoutManager = LinearLayoutManager(requireContext())
         binding.rvLifestyle.adapter = adapter
+        viewModel.onLifestyleSelected(AppPref.userDetail.physicalActivity)
     }
 
     private fun bindViewModel() {

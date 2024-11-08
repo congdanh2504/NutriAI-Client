@@ -46,7 +46,7 @@ class MealHistoryFragment : BaseFragment<FragmentMealHistoryBinding, MealHistory
     }
 
     override fun init(savedInstanceState: Bundle?) {
-        initViews()
+        initView()
         initListeners()
         bindViewModel()
     }
@@ -56,7 +56,7 @@ class MealHistoryFragment : BaseFragment<FragmentMealHistoryBinding, MealHistory
         viewModel.getHistoryMeals(startDate, endDate)
     }
 
-    private fun initViews() {
+    private fun initView() {
         binding.rvMealHistory.adapter = adapter
         binding.rvMealHistory.layoutManager = LinearLayoutManager(requireContext())
     }

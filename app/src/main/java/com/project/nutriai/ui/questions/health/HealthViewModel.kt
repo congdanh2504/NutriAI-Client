@@ -22,6 +22,7 @@ class HealthViewModel @Inject constructor() : BaseViewModel() {
             Answer(8, R.string.osteoporosis),
             Answer(9, R.string.arthritis),
             Answer(10, R.string.anemia),
+            Answer(11, R.string.lactose_intolerance)
         )
     )
     val healths = _healths.asStateFlow()
@@ -42,9 +43,28 @@ class HealthViewModel @Inject constructor() : BaseViewModel() {
                 7 -> HealthConditions.KIDNEY_DISEASE
                 8 -> HealthConditions.OSTEOPOROSIS
                 9 -> HealthConditions.ARTHRITIS
-                else -> HealthConditions.ANEMIA
+                10 -> HealthConditions.ANEMIA
+                else -> HealthConditions.LACTOSE_INTOLERANCE
             }
         }
         AppPref.userDetail = AppPref.userDetail.copy(healthConditions = healths)
+    }
+
+    fun onHealthSelected(healthConditions: List<HealthConditions>) {
+        val ids = healthConditions.map {
+            when (it) {
+                HealthConditions.OBESITY -> 4
+                HealthConditions.CARDIOVASCULAR_DISEASE -> 5
+                HealthConditions.IBS -> 6
+                HealthConditions.KIDNEY_DISEASE -> 7
+                HealthConditions.OSTEOPOROSIS -> 8
+                HealthConditions.ARTHRITIS -> 9
+                HealthConditions.ANEMIA -> 10
+                else -> 11
+            }
+        }
+        _healths.value = _healths.value.map {
+            it.copy(isSelected = ids.contains(it.id))
+        }
     }
 }
