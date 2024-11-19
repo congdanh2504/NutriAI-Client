@@ -1,5 +1,6 @@
 package com.project.data.source.remote
 
+import com.project.data.source.remote.model.AnalysisNetwork
 import com.project.data.source.remote.model.HistoryMealNetwork
 import com.project.data.source.remote.model.LoginRequest
 import com.project.data.source.remote.model.LoginResponseNetwork
@@ -68,4 +69,10 @@ interface AppApi {
 
     @DELETE("meal/meal-history/{id}")
     suspend fun deleteHistoryMeal(@Path("id") id: String)
+
+    @GET("meal/analysis")
+    suspend fun getMealAnalysis(
+        @Query("start_date") startDate: String?,
+        @Query("end_date") endDate: String?
+    ): AnalysisNetwork
 }

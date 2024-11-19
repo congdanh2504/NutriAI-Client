@@ -1,5 +1,6 @@
 package com.project.domain.repository
 
+import com.project.domain.model.Analysis
 import com.project.domain.model.HistoryMeal
 import com.project.domain.model.Meal
 import com.project.domain.model.MealDetails
@@ -14,4 +15,5 @@ interface MealRepository {
     suspend fun getHistoryMeals(startDate: String?, endDate: String?): List<HistoryMeal>
     suspend fun updateHistoryMeal(historyMeal: HistoryMeal)
     suspend fun deleteHistoryMeal(id: String)
+    suspend fun getAnalysis(startDate: String?, endDate: String?): Analysis
 }

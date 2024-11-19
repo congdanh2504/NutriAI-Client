@@ -2,7 +2,6 @@ package com.project.nutriai.ui.main.meal_history
 
 import androidx.lifecycle.viewModelScope
 import com.project.domain.model.HistoryMeal
-import com.project.domain.repository.MealRepository
 import com.project.domain.use_case.meal.GetHistoryMealUseCase
 import com.project.nutriai.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

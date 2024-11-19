@@ -21,6 +21,7 @@
     <color name="darkOrange">#F57C00</color>
     <color name="cardNoCheck">#DFFFE8</color>
     <color name="cardCheck">@color/primaryColor</color>
+    <color name="calories">@color/darkBlue</color>
     <color name="protein">#4CAF50</color>
     <color name="carbohydrates">#FFA726</color>
     <color name="fats">#FFEB3B</color>

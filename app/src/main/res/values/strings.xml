@@ -151,9 +151,14 @@
     <string name="fats_g">Fats: %1$dg</string>
     <string name="fiber_g">Fiber: %1$dg</string>
     <string name="sugar_g">Sugar: %1$dg</string>
+    <string name="protein_f">Protein: %.2f %%</string>
+    <string name="carbohydrates_f">Carbohydrates: %.2f %%</string>
+    <string name="fats_f">Fats: %.2f %%</string>
+    <string name="fiber_f">Fiber: %.2f %%</string>
+    <string name="sugar_f">Sugar: %.2f %%</string>
     <string name="add_meal_history">Add Meal History</string>
     <string name="meal_name">Meal name</string>
-    <string name="enter_meal_name">Enter meal name...</string>
+    <string name="enter_meal_name">Enter meal name…</string>
     <string name="save">Save</string>
     <string name="available_meals">Available Meals</string>
     <string name="calories_kcal">Calories (kcal)</string>
@@ -183,4 +188,12 @@
     <string name="delete">Delete</string>
     <string name="successfully">Successfully</string>
     <string name="favorite_meals">Favorite Meals</string>
+    <string name="nutrition_information_by_percentage">Nutrition Information By Percentage</string>
+    <string name="nutrition_information_bar_chart">Nutrition Information Bar Chart</string>
+    <string name="eating_habits_insights">Eating Habits Insights</string>
+    <string name="protein">Protein</string>
+    <string name="carbohydrate">Carbohydrate</string>
+    <string name="fat">Fat</string>
+    <string name="fiber">Fiber</string>
+    <string name="sugar">Sugar</string>
 </resources>

@@ -3,6 +3,8 @@ package com.project.data.repository
 import com.project.data.mapper.toDomain
 import com.project.data.mapper.toNetwork
 import com.project.data.source.remote.AppApi
+import com.project.data.source.remote.model.toDomain
+import com.project.domain.model.Analysis
 import com.project.domain.model.HistoryMeal
 import com.project.domain.repository.MealRepository
 import javax.inject.Inject
@@ -34,5 +36,9 @@ class MealRepositoryImpl @Inject constructor(
 
     override suspend fun deleteHistoryMeal(id: String) {
         appApi.deleteHistoryMeal(id)
+    }
+
+    override suspend fun getAnalysis(startDate: String?, endDate: String?): Analysis {
+        return appApi.getMealAnalysis(startDate, endDate).toDomain()
     }
 }

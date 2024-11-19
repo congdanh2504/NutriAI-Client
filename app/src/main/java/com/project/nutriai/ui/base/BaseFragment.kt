@@ -1,12 +1,17 @@
 package com.project.nutriai.ui.base
 
+import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.view.animation.AnimationUtils
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import com.project.nutriai.R
 
 abstract class BaseFragment<ViewBindingType : ViewBinding, ViewModelType : BaseViewModel> :
     Fragment(),
@@ -21,6 +26,8 @@ abstract class BaseFragment<ViewBindingType : ViewBinding, ViewModelType : BaseV
 
     protected val binding: ViewBindingType
         get() = requireBinding()
+
+    private lateinit var loadingDialog: Dialog
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -53,5 +60,23 @@ abstract class BaseFragment<ViewBindingType : ViewBinding, ViewModelType : BaseV
     override fun onDetach() {
         _mContext = null
         super.onDetach()
+    }
+
+    fun showLoadingDialog() {
+        loadingDialog = Dialog(requireContext())
+        loadingDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        loadingDialog.setContentView(R.layout.loading_dialog)
+        loadingDialog.setCancelable(false)
+        loadingDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        val loadingText = loadingDialog.findViewById<TextView>(R.id.loadingText)
+        val pulseAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.pulse)
+        loadingText.startAnimation(pulseAnimation)
+        loadingDialog.show()
+    }
+
+    fun dismissLoadingDialog() {
+        if (::loadingDialog.isInitialized && loadingDialog.isShowing) {
+            loadingDialog.dismiss()
+        }
     }
 }

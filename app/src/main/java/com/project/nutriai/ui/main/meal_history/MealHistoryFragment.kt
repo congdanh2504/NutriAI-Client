@@ -3,7 +3,6 @@ package com.project.nutriai.ui.main.meal_history
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
@@ -15,7 +14,6 @@ import com.project.nutriai.databinding.FragmentMealHistoryBinding
 import com.project.nutriai.extensions.flow.collectInViewLifecycle
 import com.project.nutriai.ui.add_meal_history.AddMealHistoryActivity
 import com.project.nutriai.ui.base.BaseFragment
-import com.project.nutriai.ui.main.MainActivity
 import com.project.nutriai.ui.main.meal_history.adapter.MealHistoryParentAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
@@ -51,11 +49,6 @@ class MealHistoryFragment : BaseFragment<FragmentMealHistoryBinding, MealHistory
         bindViewModel()
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.getHistoryMeals(startDate, endDate)
-    }
-
     private fun initView() {
         binding.rvMealHistory.adapter = adapter
         binding.rvMealHistory.layoutManager = LinearLayoutManager(requireContext())
@@ -65,15 +58,20 @@ class MealHistoryFragment : BaseFragment<FragmentMealHistoryBinding, MealHistory
         binding.llDateRange.setOnClickListener {
             showDateRangePicker()
         }
+        binding.root.setOnRefreshListener {
+            viewModel.getHistoryMeals(startDate, endDate)
+            binding.root.isRefreshing = false
+        }
     }
 
     @SuppressLint("SetTextI18n")
     private fun bindViewModel() {
+        viewModel.getHistoryMeals(startDate, endDate)
         viewModel.state.collectInViewLifecycle(this) { state ->
             if (state.isLoading) {
-                (requireActivity() as? MainActivity)?.showLoadingDialog()
+                showLoadingDialog()
             } else {
-                (requireActivity() as? MainActivity)?.dismissLoadingDialog()
+                dismissLoadingDialog()
                 adapter.submitList(state.historyMeals)
                 binding.tvTotalCalories.text =
                     state.historyMeals.sumOf { it.totalCalories }.toString() + " kcal"
