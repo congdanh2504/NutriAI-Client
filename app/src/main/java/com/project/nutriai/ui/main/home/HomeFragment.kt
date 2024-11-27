@@ -70,6 +70,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             binding.tvProfile.text = profile.fullName
             binding.ivProfile.setImageResource(if (profile.gender == Gender.MALE) R.drawable.man else R.drawable.woman)
         }
+        viewModel.recommendedHistoryMeals.collectInViewLifecycle(this) { recommendedHistoryMeals ->
+            if (recommendedHistoryMeals.isNotEmpty()) {
+                binding.rvBasedOnHistory.adapter = MealAdapter(recommendedHistoryMeals) {
+                    val intent = MealDetailsActivity.getIntent(requireContext(), it.id)
+                    startActivity(intent)
+                }
+                binding.rvBasedOnHistory.isVisible = true
+                binding.shimmerBasedOnHistory.isInvisible = true
+            }
+        }
         viewModel.recommendedMeals.collectInViewLifecycle(this) { recommendedMeals ->
             if (recommendedMeals.isNotEmpty()) {
                 binding.rvRecommended.adapter = MealAdapter(recommendedMeals) {

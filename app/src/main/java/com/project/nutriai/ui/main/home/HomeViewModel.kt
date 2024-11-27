@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.project.domain.model.Category
 import com.project.domain.model.Meal
 import com.project.domain.use_case.meal.GetAvoidedMealsUseCase
+import com.project.domain.use_case.meal.GetRecommendedBasedOnHistoryMealsUseCase
 import com.project.domain.use_case.meal.GetRecommendedMealsUseCase
 import com.project.nutriai.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,6 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
+    private val getRecommendedBasedOnHistoryMealsUseCase: GetRecommendedBasedOnHistoryMealsUseCase,
     private val getRecommendedMealsUseCase: GetRecommendedMealsUseCase,
     private val getAvoidedMealsUseCase: GetAvoidedMealsUseCase
 ) : BaseViewModel() {
@@ -25,9 +27,22 @@ class HomeViewModel @Inject constructor(
     private val _avoidedMeals = MutableStateFlow(emptyList<Meal>())
     val avoidedMeals = _avoidedMeals.asStateFlow()
 
+    private val _recommendedHistoryMeals = MutableStateFlow(emptyList<Meal>())
+    val recommendedHistoryMeals = _recommendedHistoryMeals.asStateFlow()
+
     init {
+        getRecommendedBasedOnHistoryMeals()
         getRecommendedMeals()
         getAvoidedMeals()
+    }
+
+    private fun getRecommendedBasedOnHistoryMeals() = viewModelScope.launch {
+        _recommendedHistoryMeals.value = try {
+            getRecommendedBasedOnHistoryMealsUseCase()
+        } catch (e: Exception) {
+            Log.e("HomeViewModel", "getRecommendedBasedOnHistoryMeals: $e")
+            emptyList()
+        }
     }
 
     private fun getRecommendedMeals() = viewModelScope.launch {

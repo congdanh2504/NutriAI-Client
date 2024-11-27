@@ -40,6 +40,9 @@ interface AppApi {
     @GET("meal/")
     suspend fun getAllMeals(): List<MealNetwork>
 
+    @GET("meal/recommendation-ml")
+    suspend fun getRecommendedBasedOnHistoryMeals(): List<MealNetwork>
+
     @GET("meal/recommendation")
     suspend fun getRecommendedMeals(): List<MealNetwork>
 

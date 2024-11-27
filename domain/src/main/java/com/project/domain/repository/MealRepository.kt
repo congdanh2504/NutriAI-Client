@@ -7,6 +7,7 @@ import com.project.domain.model.MealDetails
 
 interface MealRepository {
     suspend fun getAllMeals(): List<Meal>
+    suspend fun getRecommendedBasedOnHistoryMeals(): List<Meal>
     suspend fun getRecommendedMeals(): List<Meal>
     suspend fun getAvoidedMeals(): List<Meal>
     suspend fun getMealById(id: String): MealDetails

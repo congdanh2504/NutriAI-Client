@@ -196,4 +196,6 @@
     <string name="fat">Fat</string>
     <string name="fiber">Fiber</string>
     <string name="sugar">Sugar</string>
+    <string name="get_nutrition_advice_from_our_ai">Get nutrition advice from our AI bot</string>
+    <string name="based_on_your_history">Based on your history</string>
 </resources>

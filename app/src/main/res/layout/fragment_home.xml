@@ -145,6 +145,41 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardChatAI"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="@color/lightBlue"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintTop_toBottomOf="@id/cardProfile">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_sparkling"
+                    app:tint="@color/darkBlue" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="@string/get_nutrition_advice_from_our_ai"
+                    android:textColor="@color/darkBlue"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -159,7 +194,7 @@
             android:textColor="@color/textColor"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cardProfile" />
+            app:layout_constraintTop_toBottomOf="@id/cardChatAI" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvCategories"
@@ -175,6 +210,79 @@
             tools:listitem="@layout/item_category" />
 
         <TextView
+            android:id="@+id/tvBasedOnHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/inter_semibold"
+            android:text="@string/based_on_your_history"
+            android:textColor="@color/textColor"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rvCategories" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmerBasedOnHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/tvBasedOnHistory"
+            app:shimmer_auto_start="true"
+            app:shimmer_base_alpha="0.7">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="170dp"
+                    android:layout_height="150dp"
+                    android:layout_marginVertical="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:cardBackgroundColor="#E0E0E0"
+                    app:cardCornerRadius="8dp" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="170dp"
+                    android:layout_height="150dp"
+                    android:layout_marginVertical="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:cardBackgroundColor="#E0E0E0"
+                    app:cardCornerRadius="8dp" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="170dp"
+                    android:layout_height="150dp"
+                    android:layout_marginVertical="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:cardBackgroundColor="#E0E0E0"
+                    app:cardCornerRadius="8dp" />
+
+            </LinearLayout>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvBasedOnHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            android:visibility="invisible"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/tvBasedOnHistory"
+            tools:listitem="@layout/item_meal" />
+
+        <TextView
             android:id="@+id/tvRecommended"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -185,7 +293,7 @@
             android:textColor="@color/textColor"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rvCategories" />
+            app:layout_constraintTop_toBottomOf="@id/shimmerBasedOnHistory" />
 
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/shimmerRecommended"

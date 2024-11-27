@@ -14,6 +14,9 @@ class MealRepositoryImpl @Inject constructor(
 ) : MealRepository {
     override suspend fun getAllMeals() = appApi.getAllMeals().map { it.toDomain() }
 
+    override suspend fun getRecommendedBasedOnHistoryMeals() =
+        appApi.getRecommendedBasedOnHistoryMeals().map { it.toDomain() }
+
     override suspend fun getRecommendedMeals() = appApi.getRecommendedMeals().map { it.toDomain() }
 
     override suspend fun getAvoidedMeals() = appApi.getAvoidedMeals().map { it.toDomain() }
