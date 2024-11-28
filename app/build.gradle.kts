@@ -65,4 +65,5 @@ dependencies {
     implementation(libs.mpandroidchart)
     implementation(libs.markwon.core)
     implementation(libs.androidx.swiperefreshlayout)
+    implementation(libs.generativeai)
 }

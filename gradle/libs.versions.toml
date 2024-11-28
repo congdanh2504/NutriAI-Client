@@ -28,6 +28,7 @@ androidxLifecycle = "2.8.6"
 androidxLifecycleExtensions = "2.2.0"
 gson = "2.10.1"
 markwon = "4.6.2"
+generativeai = "0.9.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -68,6 +69,7 @@ androidx-lifecycle-process = { group = "androidx.lifecycle", name = "lifecycle-p
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 markwon-core = { module = "io.noties.markwon:core", version.ref = "markwon" }
+generativeai = { group = "com.google.ai.client.generativeai", name = "generativeai", version.ref = "generativeai" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

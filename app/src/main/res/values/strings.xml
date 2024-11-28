@@ -198,4 +198,7 @@
     <string name="sugar">Sugar</string>
     <string name="get_nutrition_advice_from_our_ai">Get nutrition advice from our AI bot</string>
     <string name="based_on_your_history">Based on your history</string>
+    <string name="type_something_here">Type something here</string>
+    <string name="chat_with_ai">Chat with AI</string>
+    <string name="an_error_occurred_while_sending_the_message_please_try_again">An error occurred while sending the message. Please try again.</string>
 </resources>

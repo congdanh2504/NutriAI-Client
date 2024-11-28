@@ -5,6 +5,7 @@ import com.project.nutriai.R
 import com.project.nutriai.ui.main.home.CategoryItem
 
 object AppUtils {
+    const val GEMINI_API_KEY = "AIzaSyA7c-8zjMK3RqE1cdWYrCdm1RiVj_B5Wuk"
     val category = listOf(
         CategoryItem(R.string.noodle_soups, R.drawable.noodle_soups, Category.NOODLE_SOUPS),
         CategoryItem(R.string.rice_dishes, R.drawable.rice_dishes, Category.RICE_DISHES),

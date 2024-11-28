@@ -14,6 +14,7 @@ import com.project.nutriai.extensions.flow.collectInViewLifecycle
 import com.project.nutriai.extensions.hideKeyboard
 import com.project.nutriai.extensions.startActivity
 import com.project.nutriai.ui.base.BaseFragment
+import com.project.nutriai.ui.chat_with_ai.ChatWithAiActivity
 import com.project.nutriai.ui.main.home.adapter.CategoryAdapter
 import com.project.nutriai.ui.main.home.adapter.MealAdapter
 import com.project.nutriai.ui.meal_detail.MealDetailsActivity
@@ -61,6 +62,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                 startActivity(intent)
             }
             true
+        }
+        binding.cardChatAI.setOnClickListener {
+            startActivity<ChatWithAiActivity>()
         }
     }
 
