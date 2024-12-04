@@ -156,6 +156,11 @@
     <string name="fats_f">Fats: %.2f %%</string>
     <string name="fiber_f">Fiber: %.2f %%</string>
     <string name="sugar_f">Sugar: %.2f %%</string>
+    <string name="protein_ff">Protein: %.2f</string>
+    <string name="carbohydrates_ff">Carbohydrates: %.2f</string>
+    <string name="fats_ff">Fats: %.2f</string>
+    <string name="fiber_ff">Fiber: %.2f</string>
+    <string name="sugar_ff">Sugar: %.2f</string>
     <string name="add_meal_history">Add Meal History</string>
     <string name="meal_name">Meal name</string>
     <string name="enter_meal_name">Enter meal name…</string>
@@ -201,4 +206,10 @@
     <string name="type_something_here">Type something here</string>
     <string name="chat_with_ai">Chat with AI</string>
     <string name="an_error_occurred_while_sending_the_message_please_try_again">An error occurred while sending the message. Please try again.</string>
+    <string name="identify">Identify</string>
+    <string name="fruit_identification">Fruit identification</string>
+    <string name="failed_to_get_image">Failed to get image</string>
+    <string name="benefits">Benefits</string>
+    <string name="health_warnings">Health Warnings</string>
+    <string name="error_identifying_fruit">Error identifying fruit</string>
 </resources>

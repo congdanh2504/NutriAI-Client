@@ -1,6 +1,7 @@
 package com.project.data.source.remote
 
 import com.project.data.source.remote.model.AnalysisNetwork
+import com.project.data.source.remote.model.FruitNutritionNetwork
 import com.project.data.source.remote.model.HistoryMealNetwork
 import com.project.data.source.remote.model.LoginRequest
 import com.project.data.source.remote.model.LoginResponseNetwork
@@ -10,10 +11,13 @@ import com.project.data.source.remote.model.RegisterRequest
 import com.project.data.source.remote.model.UserDetailNetwork
 import com.project.data.source.remote.model.UserDetailResponse
 import com.project.data.source.remote.model.UserResponse
+import okhttp3.MultipartBody
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.Part
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -78,4 +82,8 @@ interface AppApi {
         @Query("start_date") startDate: String?,
         @Query("end_date") endDate: String?
     ): AnalysisNetwork
+
+    @Multipart
+    @POST("predict")
+    suspend fun predict(@Part file: MultipartBody.Part): FruitNutritionNetwork
 }

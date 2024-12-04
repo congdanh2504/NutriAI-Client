@@ -66,4 +66,11 @@ dependencies {
     implementation(libs.markwon.core)
     implementation(libs.androidx.swiperefreshlayout)
     implementation(libs.generativeai)
+    // CameraX
+    implementation(libs.cameraCore)
+    implementation(libs.camera2)
+    implementation(libs.camera.view)
+    implementation(libs.camera.lifecycle)
+
+    implementation(libs.android.image.cropper)
 }

@@ -1,9 +1,11 @@
 package com.project.data.di
 
 import com.project.data.repository.AuthRepositoryImpl
+import com.project.data.repository.FruitIdentificationRepositoryImpl
 import com.project.data.repository.LocalRepositoryImpl
 import com.project.data.repository.MealRepositoryImpl
 import com.project.domain.repository.AuthRepository
+import com.project.domain.repository.FruitIdentificationRepository
 import com.project.domain.repository.LocalRepository
 import com.project.domain.repository.MealRepository
 import dagger.Binds
@@ -23,4 +25,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindLocalRepository(impl: LocalRepositoryImpl): LocalRepository
+
+    @Binds
+    abstract fun bindFruitIdentificationRepository(impl: FruitIdentificationRepositoryImpl): FruitIdentificationRepository
 }

@@ -1,9 +1,13 @@
 package com.project.nutriai.ui.main.home
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -14,6 +18,7 @@ import com.project.nutriai.extensions.flow.collectInViewLifecycle
 import com.project.nutriai.extensions.hideKeyboard
 import com.project.nutriai.extensions.startActivity
 import com.project.nutriai.ui.base.BaseFragment
+import com.project.nutriai.ui.camera.CameraActivity
 import com.project.nutriai.ui.chat_with_ai.ChatWithAiActivity
 import com.project.nutriai.ui.main.home.adapter.CategoryAdapter
 import com.project.nutriai.ui.main.home.adapter.MealAdapter
@@ -66,6 +71,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         binding.cardChatAI.setOnClickListener {
             startActivity<ChatWithAiActivity>()
         }
+        binding.btnIdentify.setOnClickListener {
+            scanFruit()
+        }
     }
 
     private fun bindViewModel() {
@@ -104,5 +112,36 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                 binding.shimmerAvoid.isInvisible = true
             }
         }
+    }
+
+    private fun scanFruit() {
+        if (ContextCompat.checkSelfPermission(
+                requireContext(), Manifest.permission.CAMERA
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            startActivity<CameraActivity>()
+        } else {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(Manifest.permission.CAMERA),
+                CAMERA_PERMISSION_REQUEST_CODE
+            )
+        }
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onRequestPermissionsResult(
+        requestCode: Int, permissions: Array<out String>, grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == CAMERA_PERMISSION_REQUEST_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                startActivity<CameraActivity>()
+            }
+        }
+    }
+
+    companion object {
+        private const val CAMERA_PERMISSION_REQUEST_CODE = 123
     }
 }
