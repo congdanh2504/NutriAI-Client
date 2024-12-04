@@ -14,19 +14,6 @@ import com.project.domain.model.UserDetail
 
 fun UserResponse.toDomain() = User(email, username, hasAnsweredSurvey)
 
-fun UserDetailNetwork.toDomain() = UserDetail(
-    fullName,
-    age,
-    Gender.valueOf(gender),
-    weight,
-    height,
-    NutritionGoal.valueOf(nutritionGoal),
-    DietPreference.valueOf(dietPreference),
-    foodAllergies.map { FoodAllergies.valueOf(it) },
-    PhysicalActivity.valueOf(physicalActivity),
-    healthConditions.map { HealthConditions.valueOf(it) }
-)
-
 fun UserDetail.toNetwork() = UserDetailNetwork(
     fullName,
     age,
@@ -37,7 +24,8 @@ fun UserDetail.toNetwork() = UserDetailNetwork(
     dietPreference.name,
     foodAllergies.map { it.name },
     physicalActivity.name,
-    healthConditions.map { it.name }
+    healthConditions.map { it.name },
+    dailyCalorieGoal
 )
 
 fun UserDetailResponse.toDomain() = UserDetail(
@@ -50,5 +38,6 @@ fun UserDetailResponse.toDomain() = UserDetail(
     DietPreference.valueOf(dietPreference),
     foodAllergies.map { FoodAllergies.valueOf(it) },
     PhysicalActivity.valueOf(physicalActivity),
-    healthConditions.map { HealthConditions.valueOf(it) }
+    healthConditions.map { HealthConditions.valueOf(it) },
+    dailyCalorieGoal
 )

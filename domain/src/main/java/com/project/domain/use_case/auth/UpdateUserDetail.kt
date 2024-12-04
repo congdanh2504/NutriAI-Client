@@ -8,7 +8,7 @@ class UpdateUserDetail @Inject constructor(
     private val authRepository: AuthRepository
 ) {
 
-    suspend operator fun invoke(userDetail: UserDetail) {
-        authRepository.updateUserDetail(userDetail)
+    suspend operator fun invoke(userDetail: UserDetail): UserDetail {
+        return authRepository.updateUserDetail(userDetail)
     }
 }

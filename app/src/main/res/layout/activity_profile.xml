@@ -75,19 +75,40 @@
         app:layout_constraintTop_toBottomOf="@+id/cvProfile"
         tools:text="John Doe" />
 
+    <TextView
+        android:id="@+id/tvCaloriesIntake"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/inter_medium"
+        android:textColor="@color/textColor"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/tvName" />
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/lpiCaloriesIntake"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="12dp"
+        android:progress="0"
+        android:progressTint="@color/primaryColor"
+        android:secondaryProgress="2000"
+        app:layout_constraintTop_toBottomOf="@id/tvCaloriesIntake" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvName">
+        app:layout_constraintTop_toBottomOf="@id/lpiCaloriesIntake">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:orientation="vertical"
-            android:paddingTop="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cvProfile">
 

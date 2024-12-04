@@ -8,6 +8,7 @@ import com.project.data.source.remote.model.LoginResponseNetwork
 import com.project.data.source.remote.model.MealDetailNetwork
 import com.project.data.source.remote.model.MealNetwork
 import com.project.data.source.remote.model.RegisterRequest
+import com.project.data.source.remote.model.TodayCaloriesNetwork
 import com.project.data.source.remote.model.UserDetailNetwork
 import com.project.data.source.remote.model.UserDetailResponse
 import com.project.data.source.remote.model.UserResponse
@@ -36,10 +37,13 @@ interface AppApi {
     suspend fun getCurrentUser(): UserResponse
 
     @POST("user/user_detail")
-    suspend fun updateUserDetail(@Body userDetailNetwork: UserDetailNetwork)
+    suspend fun updateUserDetail(@Body userDetailNetwork: UserDetailNetwork): UserDetailResponse
 
     @GET("user/user_detail")
     suspend fun getUserDetail(): UserDetailResponse
+
+    @GET("user/today_calories")
+    suspend fun getTodayCalories(): TodayCaloriesNetwork
 
     @GET("meal/")
     suspend fun getAllMeals(): List<MealNetwork>

@@ -86,6 +86,18 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding, ProfileViewModel>()
                 }
             }
         }
+
+        viewModel.state.collectIn(this) { state ->
+            state.todayCalories?.let {
+                binding.tvCaloriesIntake.text = getString(
+                    R.string.today_calories_intake_kcal,
+                    it.todayCalories,
+                    it.dailyCalories
+                )
+                binding.lpiCaloriesIntake.progress =
+                    (it.todayCalories.toFloat() / it.dailyCalories * 100).toInt()
+            }
+        }
     }
 
     private fun addChipToGroup(chipGroup: ChipGroup, text: String) {

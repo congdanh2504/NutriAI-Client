@@ -16,7 +16,8 @@ data class UserDetail(
     val dietPreference: DietPreference,
     val foodAllergies: List<FoodAllergies>,
     val physicalActivity: PhysicalActivity,
-    val healthConditions: List<HealthConditions>
+    val healthConditions: List<HealthConditions>,
+    val dailyCalorieGoal: Int = 0
 ) {
     companion object {
         val EMPTY = UserDetail(
@@ -29,7 +30,8 @@ data class UserDetail(
             dietPreference = DietPreference.NONE,
             foodAllergies = emptyList(),
             physicalActivity = PhysicalActivity.HEAVY,
-            healthConditions = emptyList()
+            healthConditions = emptyList(),
+            dailyCalorieGoal = 0
         )
     }
 }

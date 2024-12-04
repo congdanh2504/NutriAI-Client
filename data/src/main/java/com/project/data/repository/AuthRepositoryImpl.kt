@@ -35,8 +35,8 @@ class AuthRepositoryImpl @Inject constructor(
         return appApi.getCurrentUser().toDomain()
     }
 
-    override suspend fun updateUserDetail(userDetail: UserDetail) {
-        return appApi.updateUserDetail(userDetail.toNetwork())
+    override suspend fun updateUserDetail(userDetail: UserDetail): UserDetail {
+        return appApi.updateUserDetail(userDetail.toNetwork()).toDomain()
     }
 
     override suspend fun getUserDetail(): UserDetail {

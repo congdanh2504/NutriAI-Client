@@ -32,7 +32,8 @@ class QuestionsViewModel @Inject constructor(
 
     fun updateUserDetail() = viewModelScope.launch {
         try {
-            updateUserDetail(AppPref.userDetail)
+            val userDetail = updateUserDetail(AppPref.userDetail)
+            AppPref.userDetail = userDetail
             _updateStatus.value = true
         } catch (e: Exception) {
             _updateStatus.value = false

@@ -22,5 +22,7 @@ data class UserDetailNetwork(
     @SerializedName("physical_activity")
     val physicalActivity: String,
     @SerializedName("health_conditions")
-    val healthConditions: List<String>
+    val healthConditions: List<String>,
+    @SerializedName("daily_calories")
+    val dailyCalorieGoal: Int
 )
