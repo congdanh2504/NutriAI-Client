@@ -25,6 +25,7 @@ import com.project.nutriai.ui.main.home.adapter.MealAdapter
 import com.project.nutriai.ui.meal_detail.MealDetailsActivity
 import com.project.nutriai.ui.profile.ProfileActivity
 import com.project.nutriai.ui.search.SearchActivity
+import com.project.nutriai.ui.settings.SettingsActivity
 import com.project.nutriai.utils.AppUtils
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -54,6 +55,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     }
 
     private fun initListeners() {
+        binding.ivSettings.setOnClickListener {
+            startActivity<SettingsActivity>()
+        }
         binding.tvViewProfile.setOnClickListener {
             startActivity<ProfileActivity>()
         }

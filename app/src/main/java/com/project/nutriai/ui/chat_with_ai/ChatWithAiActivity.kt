@@ -66,7 +66,8 @@ class ChatWithAiActivity : BaseActivity<ActivityChatWithAiBinding, ChatWithAiVie
         viewModel.conversation.collectIn(this) {
             lifecycleScope.launch {
                 adapter.submitList(it)
-//                binding.rvConversation.smoothScrollToPosition(it.size - 1)
+                if (it.isEmpty()) return@launch
+                binding.rvConversation.smoothScrollToPosition(it.size - 1)
             }
         }
     }

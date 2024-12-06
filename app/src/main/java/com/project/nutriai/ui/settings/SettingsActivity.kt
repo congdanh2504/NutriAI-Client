@@ -1,27 +1,22 @@
-package com.project.nutriai.ui.main.settings
+package com.project.nutriai.ui.settings
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.activity.viewModels
 import com.project.nutriai.R
-import com.project.nutriai.databinding.FragmentSettingsBinding
-import com.project.nutriai.extensions.flow.collectInViewLifecycle
-import com.project.nutriai.ui.base.BaseFragment
+import com.project.nutriai.databinding.ActivitySettingsBinding
+import com.project.nutriai.extensions.flow.collectIn
+import com.project.nutriai.ui.base.BaseActivity
 import com.project.nutriai.ui.favorite.FavoriteMealActivity
 import com.project.nutriai.ui.login.LoginActivity
 
-class SettingsFragment : BaseFragment<FragmentSettingsBinding, SettingsViewModel>() {
-
+class SettingsActivity : BaseActivity<ActivitySettingsBinding, SettingsViewModel>() {
     override val viewModel: SettingsViewModel by viewModels()
 
-    override fun setupViewBinding(
-        inflater: LayoutInflater,
-        container: ViewGroup?
-    ): FragmentSettingsBinding {
-        return FragmentSettingsBinding.inflate(inflater, container, false)
+    override fun setupViewBinding(inflater: LayoutInflater): ActivitySettingsBinding {
+        return ActivitySettingsBinding.inflate(inflater)
     }
 
     override fun init(savedInstanceState: Bundle?) {
@@ -30,23 +25,26 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding, SettingsViewModel
     }
 
     private fun initListeners() {
+        binding.ivBack.setOnClickListener {
+            finish()
+        }
         binding.btnLogout.setOnClickListener {
             viewModel.logout()
-            startActivity(Intent(requireContext(), LoginActivity::class.java))
-            requireActivity().finish()
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
         }
         binding.cvLanguage.setOnClickListener {
             viewModel.changeLanguage()
         }
         binding.cvFavorite.setOnClickListener {
-            val intent = Intent(requireContext(), FavoriteMealActivity::class.java)
+            val intent = Intent(this, FavoriteMealActivity::class.java)
             startActivity(intent)
         }
     }
 
     @SuppressLint("SetTextI18n")
     private fun bindViewModel() {
-        viewModel.languageStream.collectInViewLifecycle(this) { language ->
+        viewModel.languageStream.collectIn(this) { language ->
             binding.tvLanguage.text = when (language) {
                 LanguageEnum.ENGLISH -> "EN"
                 LanguageEnum.VIETNAMESE -> "VI"

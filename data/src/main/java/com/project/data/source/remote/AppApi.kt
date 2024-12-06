@@ -7,6 +7,7 @@ import com.project.data.source.remote.model.LoginRequest
 import com.project.data.source.remote.model.LoginResponseNetwork
 import com.project.data.source.remote.model.MealDetailNetwork
 import com.project.data.source.remote.model.MealNetwork
+import com.project.data.source.remote.model.MealsPlanNetwork
 import com.project.data.source.remote.model.RegisterRequest
 import com.project.data.source.remote.model.TodayCaloriesNetwork
 import com.project.data.source.remote.model.UserDetailNetwork
@@ -90,4 +91,7 @@ interface AppApi {
     @Multipart
     @POST("predict")
     suspend fun predict(@Part file: MultipartBody.Part): FruitNutritionNetwork
+
+    @GET("meal/meal-plan")
+    suspend fun getMealsPlan(@Query("start_date") date: String): MealsPlanNetwork
 }

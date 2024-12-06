@@ -14,15 +14,27 @@
 
         <TextView
             android:id="@+id/tvHiUser"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:fontFamily="@font/merriweather_bold"
             android:textColor="@color/textColor"
             android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@id/ivSettings"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Hi, Adam!" />
+
+        <ImageView
+            android:id="@+id/ivSettings"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_settings"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/black" />
 
         <TextView
             android:id="@+id/tvWelcome"

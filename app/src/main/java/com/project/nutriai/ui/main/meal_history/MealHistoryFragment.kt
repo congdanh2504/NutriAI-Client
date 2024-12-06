@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.datepicker.CalendarConstraints
@@ -69,9 +70,11 @@ class MealHistoryFragment : BaseFragment<FragmentMealHistoryBinding, MealHistory
         viewModel.getHistoryMeals(startDate, endDate)
         viewModel.state.collectInViewLifecycle(this) { state ->
             if (state.isLoading) {
-                showLoadingDialog()
+                binding.progressBar.isVisible = true
+                binding.rvMealHistory.isVisible = false
             } else {
-                dismissLoadingDialog()
+                binding.progressBar.isVisible = false
+                binding.rvMealHistory.isVisible = true
                 adapter.submitList(state.historyMeals)
                 binding.tvTotalCalories.text =
                     state.historyMeals.sumOf { it.totalCalories }.toString() + " kcal"

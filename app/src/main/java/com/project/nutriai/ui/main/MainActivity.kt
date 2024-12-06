@@ -14,7 +14,7 @@ import com.project.nutriai.ui.base.BaseActivity
 import com.project.nutriai.ui.main.analytic.AnalyticFragment
 import com.project.nutriai.ui.main.home.HomeFragment
 import com.project.nutriai.ui.main.meal_history.MealHistoryFragment
-import com.project.nutriai.ui.main.settings.SettingsFragment
+import com.project.nutriai.ui.main.meal_plan.MealPlanFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -53,7 +53,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
                 R.id.home -> binding.viewPager.currentItem = TabLauncherPage.HOME.ordinal
                 R.id.analytics -> binding.viewPager.currentItem = TabLauncherPage.ANALYTICS.ordinal
                 R.id.history -> binding.viewPager.currentItem = TabLauncherPage.HISTORY.ordinal
-                R.id.settings -> binding.viewPager.currentItem = TabLauncherPage.SETTINGS.ordinal
+                R.id.meal_plan -> binding.viewPager.currentItem = TabLauncherPage.MEAL_PLAN.ordinal
             }
             true
         }
@@ -63,7 +63,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         binding.viewPager.adapter = MainPageAdapter(this)
         binding.viewPager.isUserInputEnabled = false
         binding.viewPager.offscreenPageLimit = 4
-
     }
 }
 
@@ -74,11 +73,11 @@ class MainPageAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
         TabLauncherPage.HOME.ordinal -> HomeFragment()
         TabLauncherPage.ANALYTICS.ordinal -> AnalyticFragment()
         TabLauncherPage.HISTORY.ordinal -> MealHistoryFragment()
-        TabLauncherPage.SETTINGS.ordinal -> SettingsFragment()
+        TabLauncherPage.MEAL_PLAN.ordinal -> MealPlanFragment()
         else -> throw IllegalArgumentException("Invalid position")
     }
 }
 
 enum class TabLauncherPage {
-    HOME, ANALYTICS, HISTORY, SETTINGS
+    HOME, MEAL_PLAN, HISTORY, ANALYTICS
 }

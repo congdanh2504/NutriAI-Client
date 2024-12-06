@@ -5,13 +5,13 @@
     <item
         android:id="@+id/home"
         android:icon="@drawable/ic_home"
-        android:title="Home"
+        android:title="@string/home"
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/analytics"
-        android:icon="@drawable/ic_analyis"
-        android:title="Analytics"
+        android:id="@+id/meal_plan"
+        android:icon="@drawable/ic_planning"
+        android:title="@string/meal_plan"
         app:showAsAction="ifRoom" />
 
     <item
@@ -21,13 +21,13 @@
     <item
         android:id="@+id/history"
         android:icon="@drawable/ic_history"
-        android:title="History"
+        android:title="@string/history"
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/settings"
-        android:icon="@drawable/ic_settings"
-        android:title="Settings"
+        android:id="@+id/analytics"
+        android:icon="@drawable/ic_analyis"
+        android:title="@string/analytics"
         app:showAsAction="ifRoom" />
 
 </menu>

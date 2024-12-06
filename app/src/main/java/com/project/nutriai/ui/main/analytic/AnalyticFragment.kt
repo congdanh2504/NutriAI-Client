@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
@@ -21,6 +22,7 @@ import com.project.nutriai.databinding.FragmentAnalyticBinding
 import com.project.nutriai.extensions.flow.collectInViewLifecycle
 import com.project.nutriai.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
+import io.noties.markwon.Markwon
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -46,7 +48,6 @@ class AnalyticFragment : BaseFragment<FragmentAnalyticBinding, AnalyticViewModel
 
     private fun initView() {
         // Initialize view here
-
     }
 
     private fun initListeners() {
@@ -64,12 +65,20 @@ class AnalyticFragment : BaseFragment<FragmentAnalyticBinding, AnalyticViewModel
         viewModel.getAnalysis(startDate, endDate)
         viewModel.state.collectInViewLifecycle(this) { state ->
             if (state.isLoading) {
-                showLoadingDialog()
+                binding.progressBar.isVisible = true
+                binding.nestedScrollView.isVisible = false
             } else {
-                dismissLoadingDialog()
+                binding.progressBar.isVisible = false
+                binding.nestedScrollView.isVisible = true
                 state.analysis?.let { analysis ->
                     binding.tvTotalCalories.text =
                         analysis.nutritionInfos.sumOf { it.calories }.toString() + " kcal"
+                    binding.tvRecommendations.text = analysis.note
+                    val markwon = Markwon.create(requireContext())
+                    markwon.setMarkdown(
+                        binding.tvRecommendations,
+                        analysis.note.replace("##", "###")
+                    )
                     setupPieChart(analysis)
                     setupBarChart(analysis)
                 }
@@ -110,7 +119,6 @@ class AnalyticFragment : BaseFragment<FragmentAnalyticBinding, AnalyticViewModel
         val fatSum = analysis.nutritionInfos.sumOf { it.fats }
         val fiberSum = analysis.nutritionInfos.sumOf { it.fiber }
         val sugarSum = analysis.nutritionInfos.sumOf { it.sugar }
-
 
         val allSum = proteinSum + carbohydrateSum + fatSum + fiberSum + sugarSum
         val proteinPercentage = (proteinSum.toFloat() / allSum * 100)

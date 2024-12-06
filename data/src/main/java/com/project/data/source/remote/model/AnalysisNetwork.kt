@@ -6,11 +6,14 @@ import com.project.domain.model.Analysis
 
 data class AnalysisNetwork(
     @SerializedName("nutrient_totals")
-    val nutrientTotals: List<NutritionInfoNetwork>
+    val nutrientTotals: List<NutritionInfoNetwork>,
+    @SerializedName("note")
+    val note: String
 )
 
 fun AnalysisNetwork.toDomain(): Analysis {
     return Analysis(
-        nutritionInfos = nutrientTotals.map { it.toDomain() }
+        nutritionInfos = nutrientTotals.map { it.toDomain() },
+        note = note
     )
 }

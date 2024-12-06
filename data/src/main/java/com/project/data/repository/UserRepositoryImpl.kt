@@ -10,4 +10,5 @@ class UserRepositoryImpl @Inject constructor(
 ) : UserRepository {
 
     override suspend fun getTodayCalories() = appApi.getTodayCalories().toDomain()
+    override suspend fun getMealsPlan(date: String) = appApi.getMealsPlan(date).toDomain()
 }

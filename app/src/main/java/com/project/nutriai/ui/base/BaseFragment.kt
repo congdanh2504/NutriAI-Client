@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import com.project.nutriai.R
+import com.shashank.sony.fancytoastlib.FancyToast
 
 abstract class BaseFragment<ViewBindingType : ViewBinding, ViewModelType : BaseViewModel> :
     Fragment(),
@@ -60,6 +61,26 @@ abstract class BaseFragment<ViewBindingType : ViewBinding, ViewModelType : BaseV
     override fun onDetach() {
         _mContext = null
         super.onDetach()
+    }
+
+    fun showSuccessMessage(message: String) {
+        FancyToast.makeText(
+            requireContext(),
+            message,
+            FancyToast.LENGTH_LONG,
+            FancyToast.SUCCESS,
+            false
+        ).show()
+    }
+
+    fun showErrorMessage(message: String) {
+        FancyToast.makeText(
+            requireContext(),
+            message,
+            FancyToast.LENGTH_LONG,
+            FancyToast.ERROR,
+            false
+        ).show()
     }
 
     fun showLoadingDialog() {

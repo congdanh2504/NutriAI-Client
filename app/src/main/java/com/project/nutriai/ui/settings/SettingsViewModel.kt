@@ -1,4 +1,4 @@
-package com.project.nutriai.ui.main.settings
+package com.project.nutriai.ui.settings
 
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
