@@ -1,6 +1,8 @@
 package com.project.data.source.remote
 
 import com.project.data.source.remote.model.AnalysisNetwork
+import com.project.data.source.remote.model.ChatRequestNetwork
+import com.project.data.source.remote.model.ChatResponseNetwork
 import com.project.data.source.remote.model.FruitNutritionNetwork
 import com.project.data.source.remote.model.HistoryMealNetwork
 import com.project.data.source.remote.model.LoginRequest
@@ -94,4 +96,7 @@ interface AppApi {
 
     @GET("meal/meal-plan")
     suspend fun getMealsPlan(@Query("start_date") date: String): MealsPlanNetwork
+
+    @POST("chat")
+    suspend fun sendMessage(@Body request: ChatRequestNetwork): ChatResponseNetwork
 }
