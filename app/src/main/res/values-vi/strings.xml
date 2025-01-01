@@ -182,4 +182,6 @@
     <string name="analytics">Phân tích</string>
     <string name="plan">Kế hoạch</string>
     <string name="shopping_list">Danh sách mua sắm</string>
+    <string name="based_on_your_survey_answers_we_recommend_that_you_consume_calories_per_day">Dựa trên câu trả lời khảo sát của bạn, chúng tôi đề xuất bạn nên tiêu thụ %1$d calo mỗi ngày</string>
+    <string name="recommended_calories">Lượng calo được đề xuất</string>
 </resources>

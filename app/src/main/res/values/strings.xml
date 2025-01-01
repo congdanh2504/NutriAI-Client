@@ -183,4 +183,6 @@
     <string name="analytics">Analytics</string>
     <string name="plan">Plan</string>
     <string name="shopping_list">Shopping list</string>
+    <string name="based_on_your_survey_answers_we_recommend_that_you_consume_calories_per_day">Based on your survey answers, we recommend that you consume %1$d calories per day</string>
+    <string name="recommended_calories">Recommended Calories</string>
 </resources>

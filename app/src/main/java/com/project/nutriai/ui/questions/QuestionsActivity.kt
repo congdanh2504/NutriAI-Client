@@ -12,6 +12,7 @@ import com.project.nutriai.extensions.flow.collectIn
 import com.project.nutriai.ui.base.BaseActivity
 import com.project.nutriai.ui.main.MainActivity
 import com.project.nutriai.utils.AppPref
+import com.project.nutriai.utils.CategoriesDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.filterNotNull
 
@@ -72,10 +73,15 @@ class QuestionsActivity : BaseActivity<ActivityQuestionsBinding, QuestionsViewMo
     private fun bindViewModel() {
         viewModel.updateStatus.filterNotNull().collectIn(this) {
             if (it) {
-                if (!isEditMode) {
-                    startActivity(Intent(this, MainActivity::class.java))
-                }
-                finish()
+                CategoriesDialog().apply {
+                    setRecommendedCalories(AppPref.userDetail.dailyCalorieGoal)
+                    setOnNextClick {
+                        if (!isEditMode) {
+                            startActivity(Intent(this@QuestionsActivity, MainActivity::class.java))
+                        }
+                        finish()
+                    }
+                }.show(supportFragmentManager)
             } else {
                 showErrorMessage("Failed to update user detail")
             }
